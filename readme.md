@@ -4,8 +4,8 @@
 
 모바일 게임
 ----------
-1. DefenceGame
-2. RpgGame
+DefenceGame
+RpgGame
 
 PC 게임
 -------
