@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IGameStateSubject
 {
-    void NotifyGameState(_EGameStateType_ type, bool state);
-    void AddObserver(IGameStateObserver ob);
-    void RemoveObserver(IGameStateObserver ob);
+    void NotifyGameState(_EGameStateType_ _type, bool _state);
+    void AddObserver(IGameStateObserver _ob);
+    void RemoveObserver(IGameStateObserver _ob);
 }

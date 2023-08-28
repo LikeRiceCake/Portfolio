@@ -13,14 +13,14 @@ public class AIStrategy : ControlStrategy
     {
         switch (GetComponent<Monster>().GetMonsterType())
         {
-            case _EMonsterType_.eBoar:
-            case _EMonsterType_.eBird:
-            case _EMonsterType_.eWolf:
+            case _EMonsterType_.emtBoar:
+            case _EMonsterType_.emtBird:
+            case _EMonsterType_.emtWolf:
                 stateManager = gameObject.AddComponent<NormalStateManager>();
                 break;
-            case _EMonsterType_.eGumihoH:
-            case _EMonsterType_.eGumihoA:
-            case _EMonsterType_.eHeogho:
+            case _EMonsterType_.emtGumihoH:
+            case _EMonsterType_.emtGumihoA:
+            case _EMonsterType_.emtHeogho:
                 stateManager = gameObject.AddComponent<BossStateManager>();
                 break;
             default:
@@ -31,6 +31,6 @@ public class AIStrategy : ControlStrategy
 
     public override void ControlAction()
     {
-        stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.eMonster);
+        stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotMonster);
     }
 }

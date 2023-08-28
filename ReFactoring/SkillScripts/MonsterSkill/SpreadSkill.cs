@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpreadSkill : MonoBehaviour
 {
-    public float spreadSpeed { get; set; }
+    public float m_spreadSpeed { get; set; }
 
     void Update()
     {
@@ -13,6 +13,6 @@ public class SpreadSkill : MonoBehaviour
 
     void SkillSpread()
     {
-        transform.localScale += new Vector3(Time.deltaTime * spreadSpeed, Time.deltaTime * spreadSpeed, Time.deltaTime * spreadSpeed);
+        transform.localScale += new Vector3(Time.deltaTime * m_spreadSpeed, Time.deltaTime * m_spreadSpeed, Time.deltaTime * m_spreadSpeed);
     }
 }

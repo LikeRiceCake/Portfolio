@@ -12,10 +12,10 @@ public class Gumiho : Boss
 
     public override void InitCollectionInfo()
     {
-        collectionInfo.name = "±¸¹ÌÈ£";
+        collectionInfo.name = "ï¿½ï¿½ï¿½ï¿½È£";
         collectionInfo.sprite = resourceManager.LoadMonsterSprite("Sprite/Gumiho");
-        collectionInfo.description = "»ç¶÷À» È¦·Á °£À» »©¸Ô´Â´Ù°í ¾Ë·ÁÁø ²¿¸® ¾ÆÈ©°³ ´Þ¸° ¿©¿ì´Ù. Ã¢±Í¿¡°Ô Á¶Á¾´çÇÏ±â Àü¿¡µµ °£°£È÷ ¸¶À»¿¡ µé¾î¿ÔÀ¸³ª ÇöÀç´Â ±× ºóµµ°¡ ´õ¿í ´Ã¾ú´Ù.";
-        collectionInfo.numbering = (int)_EMonsterType_.eGumihoH + 1;
-        collectionInfo.skillDescription = "»ó´ë¸¦ ¸ÅÈ¤½ÃÅ³ ¼ö ÀÖ´Â ±â¿îÀ» ³¯·Á ¹æ½É½ÃÅ²´Ù.";
+        collectionInfo.description = "ï¿½ï¿½ï¿½ï¿½ï¿½ È¦ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Â´Ù°ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È©ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. Ã¢ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½óµµ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ï¿½ï¿½.";
+        collectionInfo.numbering = (int)_EMonsterType_.emtGumihoH + 1;
+        collectionInfo.skillDescription = "ï¿½ï¿½ë¸¦ ï¿½ï¿½È¤ï¿½ï¿½Å³ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½É½ï¿½Å²ï¿½ï¿½.";
     }
 }

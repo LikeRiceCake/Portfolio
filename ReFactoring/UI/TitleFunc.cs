@@ -10,9 +10,6 @@ public class TitleFunc : MonoBehaviour
 {
     MapLoader mapLoader;
     
-    [SerializeField]
-    CutSceneChannelSO myCSChannel;
-
     Action myAction;
 
     [SerializeField]
@@ -24,10 +21,10 @@ public class TitleFunc : MonoBehaviour
 
     enum _EMainSelect_
     {
-        eStart,
-        eOption,
-        eQuit,
-        eMax
+        emsStart,
+        emsOption,
+        emsQuit,
+        emsMax
     } _EMainSelect_ currentSelect;
 
     private void Start()
@@ -36,7 +33,7 @@ public class TitleFunc : MonoBehaviour
         mapLoader = GameObject.Find("Manager").GetComponent<MapLoader>();
         spriteRunner.SetRunImage("MainWallpaper_Image");
         spriteRunner.RunImage();
-        currentSelect = _EMainSelect_.eStart;
+        currentSelect = _EMainSelect_.emsStart;
         SetArrow();
         optionFrame = GameObject.Find("ManageCanvas").transform.Find("Canvas").transform.Find("OptionWallpaper_Image").gameObject;
     }
@@ -53,7 +50,7 @@ public class TitleFunc : MonoBehaviour
 
     public void StartGame()
     {
-        mapLoader.StartLoadMap(_EMapType_.eIntro);
+        mapLoader.StartLoadMap(_EMapType_.emtIntro);
     }
 
     public void OnOffOption()
@@ -81,14 +78,14 @@ public class TitleFunc : MonoBehaviour
     {
         switch (currentSelect)
         {
-            case _EMainSelect_.eStart:
-                currentSelect = _upDown == "Up" ? _EMainSelect_.eQuit : _EMainSelect_.eOption;
+            case _EMainSelect_.emsStart:
+                currentSelect = _upDown == "Up" ? _EMainSelect_.emsQuit : _EMainSelect_.emsOption;
                 break;
-            case _EMainSelect_.eOption:
-                currentSelect = _upDown == "Up" ? _EMainSelect_.eStart : _EMainSelect_.eQuit;
+            case _EMainSelect_.emsOption:
+                currentSelect = _upDown == "Up" ? _EMainSelect_.emsStart : _EMainSelect_.emsQuit;
                 break;
-            case _EMainSelect_.eQuit:
-                currentSelect = _upDown == "Up" ? _EMainSelect_.eOption : _EMainSelect_.eStart;
+            case _EMainSelect_.emsQuit:
+                currentSelect = _upDown == "Up" ? _EMainSelect_.emsOption : _EMainSelect_.emsStart;
                 break;
             default:
                 break;
@@ -101,13 +98,13 @@ public class TitleFunc : MonoBehaviour
     {
         switch (currentSelect)
         {
-            case _EMainSelect_.eStart:
+            case _EMainSelect_.emsStart:
                 myAction = StartGame;
                 break;
-            case _EMainSelect_.eOption:
+            case _EMainSelect_.emsOption:
                 myAction = OnOffOption;
                 break;
-            case _EMainSelect_.eQuit:
+            case _EMainSelect_.emsQuit:
                 myAction = QuitGame;
                 break;
             default:

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerState
 {
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
         myAnim.ResetTrigger("Idle");
         myAnim.SetTrigger("Move");
 

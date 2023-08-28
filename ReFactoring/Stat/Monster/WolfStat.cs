@@ -8,12 +8,12 @@ public class WolfStat : MonsterStat
     const int WOLF_DAMAGE = 15;
     const float WOLF_SPEED = 1.2f;
     const float WOLF_SIGHT = 5f;
-    const float WOLF_ATTACKRANGE = 1.5f;
-    const float WOLF_ATTACKCOOL = 2f;
+    const float WOLF_ATTACK_RANGE = 1.5f;
+    const float WOLF_ATTACK_COOL = 2f;
 
-    public WolfStat(StateManager stateManager) : base(stateManager)
+    public WolfStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 
     protected override void InitStat()
@@ -23,8 +23,8 @@ public class WolfStat : MonsterStat
         myStat.damage = WOLF_DAMAGE;
         myStat.speed = WOLF_SPEED;
         myStat.sight = WOLF_SIGHT;
-        myStat.attackRange = WOLF_ATTACKRANGE;
-        myStat.attackCool = WOLF_ATTACKCOOL;
+        myStat.attackRange = WOLF_ATTACK_RANGE;
+        myStat.attackCool = WOLF_ATTACK_COOL;
         myStat.currentAttackCool = 0f;
     }
 }

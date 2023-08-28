@@ -9,14 +9,14 @@ public class SpriteAnimationRunner : MonoBehaviour
 
     GameObject sprite;
 
-    public void SetRunImage(string objectName)
+    public void SetRunImage(string _objectName)
     {
-        if (sprites.ContainsKey(objectName))
-            sprite = sprites[objectName];
+        if (sprites.ContainsKey(_objectName))
+            sprite = sprites[_objectName];
         else
         {
-            sprites.Add(objectName, GameObject.Find(objectName));
-            sprite = sprites[objectName];
+            sprites.Add(_objectName, GameObject.Find(_objectName));
+            sprite = sprites[_objectName];
         }
     }
 

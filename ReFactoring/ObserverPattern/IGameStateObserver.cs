@@ -6,5 +6,5 @@ using UnityEngine;
 
 public interface IGameStateObserver
 {
-    void ReactNotify(_EGameStateType_ type, bool state);
+    void ReactNotify(_EGameStateType_ _type, bool _state);
 }

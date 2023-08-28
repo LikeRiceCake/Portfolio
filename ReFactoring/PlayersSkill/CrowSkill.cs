@@ -10,26 +10,30 @@ public class CrowSkill : PlayerSkill
 
     CharacterHPUI hpUI;
 
+    const int HEAL_VALUE = 70;
+
+    const float HEAL_COOLTIME = 17f;
+
     const float EFFECT_DESTROY_TIME = 3f;
     
-    public override void SkillFunction()
+    public override void ActivateSkillFunction()
     {
-        if(currentCoolTime <= 0)
+        if(m_currentCoolTime <= 0)
         {
-            base.SkillFunction();
+            base.ActivateSkillFunction();
 
-            stat.PlusHp(_EIntStatType_.eCurrentHp, skillValue);
+            stat.PlusHp(_EIntStatType_.eistCurrentHp, HEAL_VALUE);
 
             hpUI.ChangeCharacterHPUI(
-                _EHPUIType_.ePlayer,
-                stat.GetIntStat(_EIntStatType_.eCurrentHp),
-                stat.GetIntStat(_EIntStatType_.eMaxHp));
+                _EHPUIType_.ehutPlayer,
+                stat.GetIntStat(_EIntStatType_.eistCurrentHp),
+                stat.GetIntStat(_EIntStatType_.eistMaxHp));
 
             GameObject effect = Instantiate(resourceManager.LoadSkillPrefab("Prefabs/HealingAura"), transform);
 
             Destroy(effect, EFFECT_DESTROY_TIME);
 
-            currentCoolTime = COOLTIME;
+            m_currentCoolTime = HEAL_COOLTIME;
         }
     }
 
@@ -37,8 +41,8 @@ public class CrowSkill : PlayerSkill
     {
         base.Update();
 
-        if (skillUIImage.sprite.name == "HealSkillSprite")
-            coolImage.fillAmount = currentCoolTime / COOLTIME;
+        if (skillImage.sprite.name == "HealSkillSprite")
+            coolImage.fillAmount = m_currentCoolTime / HEAL_COOLTIME;
     }
 
     protected override void Awake()
@@ -54,10 +58,6 @@ public class CrowSkill : PlayerSkill
     {
         stat = GetComponent<IStat>().GetStat();
 
-        skillValue = 70;
-
-        COOLTIME = 17f;
-
-        currentCoolTime = 0f;
+        m_currentCoolTime = 0f;
     }
 }

@@ -11,15 +11,15 @@ public class InitHelper : MonoBehaviour
 
     private void Awake()
     {
-        needInit = new List<Action>[(int)_EInitCallType_.eMax];
+        needInit = new List<Action>[(int)_EInitCallType_.eictMax];
 
         for (int i = 0; i < needInit.Length; i++)
             needInit[i] = new List<Action>();
     }
 
-    public void CallInit(_EInitCallType_ type)
+    public void CallInit(_EInitCallType_ _type)
     {
-        foreach(var action in needInit[(int)type])
+        foreach(var action in needInit[(int)_type])
             action.Invoke();
     }
 }

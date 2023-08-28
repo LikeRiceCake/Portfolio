@@ -6,6 +6,6 @@ using UnityEngine;
 public interface IDieSubject
 {
     void NotifyDeath();
-    void AddObserver(IDieObserver ob);
-    void RemoveObserver(IDieObserver ob);
+    void AddObserver(IDieObserver _ob);
+    void RemoveObserver(IDieObserver _ob);
 }

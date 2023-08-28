@@ -8,7 +8,7 @@ public class InstantiateObjectSkill : MonoBehaviour
     GameObject blowUpEffect;
 
     public int damage { get; set; }
-    public float destroyTime { get; set; }
+    public float m_destroyTime { get; set; }
 
     public float insTime { get; set; }
 
@@ -23,8 +23,8 @@ public class InstantiateObjectSkill : MonoBehaviour
     void InstantiateSkill()
     {
         GameObject effect = Instantiate(blowUpEffect, transform.position, Quaternion.identity);
-        effect.GetComponent<MonsterAttackCollider>().damage = damage;
-        effect.GetComponent<MonsterAttackCollider>().destroyTime = destroyTime;
+        effect.GetComponent<MonsterAttackCollider>().m_damage = damage;
+        effect.GetComponent<MonsterAttackCollider>().m_destroyTime = m_destroyTime;
         Destroy(gameObject);
     }
 }

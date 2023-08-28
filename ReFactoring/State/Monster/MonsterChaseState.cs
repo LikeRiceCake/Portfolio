@@ -5,9 +5,9 @@ using UnityEngine;
 
 public abstract class MonsterChaseState : MonsterState
 {
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
         myAnim.SetTrigger("Move");
         StartCoroutine(ChaseTarget());
         StartCoroutine(AttackCoolDown());

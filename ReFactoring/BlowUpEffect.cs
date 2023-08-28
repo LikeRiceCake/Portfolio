@@ -5,11 +5,11 @@ using UnityEngine;
 public class BlowUpEffect : MonoBehaviour
 {
     [SerializeField]
-    int damage;
+    int m_damage;
 
     void Start()
     {
-        damage = 40;
+        m_damage = 40;
         Destroy(gameObject, 3f);
     }
 

@@ -7,7 +7,7 @@ public abstract class MonsterState : State
 {
     const float GRAVITY = 0.98f;
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
         StartCoroutine(ApplyGravity());
     }

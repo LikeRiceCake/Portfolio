@@ -10,8 +10,8 @@ public class NormalBattleIdleState : MonsterBattleIdleState
     {
         while (true)
         {
-            if (myStat.GetFloatStat(_EFloatStatType_.eCurrentAttackCool) > 0f)
-                myStat.SetFloatStat(_EFloatStatType_.eCurrentAttackCool, -Time.deltaTime);
+            if (myStat.GetFloatStat(_EFloatStatType_.efstCurrentAttackCool) > 0f)
+                myStat.SetFloatStat(_EFloatStatType_.efstCurrentAttackCool, -Time.deltaTime);
 
             yield return null;
         }
@@ -26,7 +26,7 @@ public class NormalBattleIdleState : MonsterBattleIdleState
     {
         Transform target = null;
 
-        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
         if (cols != null)
         {
@@ -39,12 +39,12 @@ public class NormalBattleIdleState : MonsterBattleIdleState
 
         while (true)
         {
-            if (Vector3.Distance(target.position, transform.position) > myStat.GetFloatStat(_EFloatStatType_.eAttackRange))
-                stateManager.SetActionType(_EStateType_.eChase, _EObjectType_.eMonster);
+            if (Vector3.Distance(target.position, transform.position) > myStat.GetFloatStat(_EFloatStatType_.efstAttackRange))
+                stateManager.SetActionType(_EStateType_.estChase, _EObjectType_.eotMonster);
             else
             {
-                if (myStat.GetFloatStat(_EFloatStatType_.eCurrentAttackCool) <= 0f)
-                    stateManager.SetActionType(_EStateType_.eAttack, _EObjectType_.eMonster);
+                if (myStat.GetFloatStat(_EFloatStatType_.efstCurrentAttackCool) <= 0f)
+                    stateManager.SetActionType(_EStateType_.estAttack, _EObjectType_.eotMonster);
             }
 
             yield return null;
@@ -55,7 +55,7 @@ public class NormalBattleIdleState : MonsterBattleIdleState
     {
         Transform target = null;
 
-        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
         if (cols != null)
         {

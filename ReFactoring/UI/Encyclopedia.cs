@@ -21,7 +21,7 @@ public class Encyclopedia : MonoBehaviour
     {
         resourceManager = GameObject.Find("Manager").GetComponent<ResourceManager>();
 
-        CreateSpace((int)_EMonsterType_.eMax);
+        CreateSpace((int)_EMonsterType_.emtMax);
     }
 
     void Update()
@@ -90,7 +90,7 @@ public class Encyclopedia : MonoBehaviour
                 monsterEncyclopedia.Add(_data.name, _data);
 
                 WriteInfo(_data.name);
-                SetEncyclopedia((int)_EMonsterType_.eMax);
+                SetEncyclopedia((int)_EMonsterType_.emtMax);
             }
         }
     }

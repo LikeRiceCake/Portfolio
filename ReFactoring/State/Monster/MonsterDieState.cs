@@ -6,9 +6,9 @@ using UnityEngine;
 public abstract class MonsterDieState : 
     MonsterState
 {
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
         myAnim.SetTrigger("Die");
     }
 }

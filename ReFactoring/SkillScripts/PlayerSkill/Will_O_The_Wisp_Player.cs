@@ -7,19 +7,19 @@ public class Will_O_The_Wisp_Player : MonoBehaviour
     [SerializeField]
     float Speed;
 
-    float _destroyTime;
+    float _m_destroyTime;
 
-    public float destroyTime {
+    public float m_destroyTime {
         set
         {
-            _destroyTime = value;
+            _m_destroyTime = value;
         }
     }
 
     void Start()
     {
         Speed = 5f;
-        Destroy(gameObject, _destroyTime);
+        Destroy(gameObject, _m_destroyTime);
     }
 
     void Update()

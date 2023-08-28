@@ -17,15 +17,15 @@ public class CharacterHPUI : MonoBehaviour
         bossHp = bossHpUI.transform.Find("Image_Front").GetComponent<Image>();
     }
 
-    public void ChangeCharacterHPUI(_EHPUIType_ type, int currentHp, int maxHp)
+    public void ChangeCharacterHPUI(_EHPUIType_ _type, int _currentHp, int _maxHp)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EHPUIType_.ePlayer:
-                playerHp.fillAmount = currentHp / (float)maxHp;
+            case _EHPUIType_.ehutPlayer:
+                playerHp.fillAmount = _currentHp / (float)_maxHp;
                 break;
-            case _EHPUIType_.eBoss:
-                bossHp.fillAmount = currentHp / (float)maxHp;
+            case _EHPUIType_.ehutBoss:
+                bossHp.fillAmount = _currentHp / (float)_maxHp;
                 break;
         }
     }

@@ -38,18 +38,18 @@ public abstract class Monster : MonoBehaviour, ICollectible, IStat
 
     private void Update()
     {
-        // ¹Ð¸² ¹æÁö
+        // ï¿½Ð¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         myBody.velocity = Vector3.zero;
         myBody.angularVelocity = Vector3.zero;
     }
 
     public virtual void InitCollectionInfo()
     {
-        collectionInfo.name = "¿À·ù";
+        collectionInfo.name = "ï¿½ï¿½ï¿½ï¿½";
         collectionInfo.sprite = resourceManager.LoadMonsterSprite("Sprite/Error");
-        collectionInfo.description = "¿À·ù";
+        collectionInfo.description = "ï¿½ï¿½ï¿½ï¿½";
         collectionInfo.numbering = 0;
-        collectionInfo.skillDescription = "¿À·ù";
+        collectionInfo.skillDescription = "ï¿½ï¿½ï¿½ï¿½";
     }
 
     public _EMonsterType_ GetMonsterType()

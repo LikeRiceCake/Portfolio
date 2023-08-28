@@ -7,148 +7,142 @@ namespace PublicEnums
     public enum _EDialogueEventType_
     {
         eStart,
-        eTutorial,
-        eTutorialMove,
-        eTutorialAttack,
-        eTutorialSkill,
-        eTutorialDash,
-        eTutorialEnd,
-        eBeforeSecondRoom,
-        eEndSecondRoomBattle,
-        eEndSecondThirdRoomBattle,
-        eEndThirdRoomBattle,
-        eFrontNotBrokenWall,
-        eBeforeMiddleBossRoom,
-        eEnterMiddleBossRoom,
-        eEndMiddleBossRoomBattle,
-        eGetGumihoSkill,
-        eFrontCanBrokenWall,
-        eEndBrakeWall,
-        eFrontAnotherWall,
-        eEndShotWall,
-        ePondCrystal,
-        eBeforeFinalBossRoom,
-        eEndInstantiateFinalBoss,
-        eMonsterDie,
-        eMax
+        edetTutorial,
+        edetTutorialMove,
+        edetTutorialAttack,
+        edetTutorialSkill,
+        edetTutorialDash,
+        edetTutorialEnd,
+        edetBeforeSecondRoom,
+        edetEndSecondRoomBattle,
+        edetEndSecondThirdRoomBattle,
+        edetEndThirdRoomBattle,
+        edetFrontNotBrokenWall,
+        edetBeforeMiddleBossRoom,
+        edetEnterMiddleBossRoom,
+        edetEndMiddleBossRoomBattle,
+        edetGetGumihoSkill,
+        edetFrontCanBrokenWall,
+        edetEndBrakeWall,
+        edetFrontAnotherWall,
+        edetEndShotWall,
+        edetPondCrystal,
+        edetBeforeFinalBossRoom,
+        edetEndInstantiateFinalBoss,
+        edetMonsterDie,
+        edetMax
     }
 
     public enum _EInputType_
     {
-        eMove,
-        eRotate,
-        eSkill,
-        eDash,
-        eOption,
-        eDialogue,
-        eAttack,
-        eMax
+        eitMove,
+        eitRotate,
+        eitSkill,
+        eitDash,
+        eitOption,
+        eitDialogue,
+        eitAttack,
+        eitMax
     }
 
     public enum _EInputDetailType_
     {
-        eDown_W,
-        eDown_S,
-        eDown_A,
-        eDown_D,
-        eUp_W,
-        eUp_S,
-        eUp_A,
-        eUp_D,
-        eRotate,
-        eChangeSkill,
-        eUseSkill,
-        eDash,
-        eOption,
-        eDialogue,
-        eAttack_W,
-        eAttack_S,
-        eMax
+        eidtDown_W,
+        eidtDown_S,
+        eidtDown_A,
+        eidtDown_D,
+        eidtUp_W,
+        eidtUp_S,
+        eidtUp_A,
+        eidtUp_D,
+        eidtRotate,
+        eidtChangeSkill,
+        eidtUseSkill,
+        eidtDash,
+        eidtOption,
+        eidtDialogue,
+        eidtAttack_W,
+        eidtAttack_S,
+        eidtMax
     }
 
     public enum _EMapType_
     {
-        eTitle,
-        eIntro,
-        eInGame,
-        eMiddleBossTransformation,
-        eFinalBossAppear,
-        eFinalBossRepel,
-        eGumihoFight,
-        eHeoghoFight,
-        eMax
-    }
-
-    public enum _ECutSceneType_
-    {
-        
-        eMax
+        emtTitle,
+        emtIntro,
+        emtInGame,
+        emtMiddleBossTransformation,
+        emtFinalBossAppear,
+        emtFinalBossRepel,
+        emtGumihoFight,
+        emtHeoghoFight,
+        emtMax
     }
 
     public enum _ESoundType_
     {
-        eMaster,
-        eBGM,
-        eSFX,
-        eMax
+        estMaster,
+        estBGM,
+        estSFX,
+        estMax
     }
 
     public enum _EPlayerDamageType_
     {
-        eWeak_1,
-        eWeak_2,
-        eWeak_3,
-        eW1_Strong_1,
-        eW2_Strong_2,
-        eW3_Strong_3,
-        eMax
+        epdtWeak_1,
+        epdtWeak_2,
+        epdtWeak_3,
+        epdtW1_Strong_1,
+        epdtW2_Strong_2,
+        epdtW3_Strong_3,
+        epdtMax
     }
 
     namespace Monster
     {
         public enum _EMonsterType_
         {
-            eBoar,
-            eBird,
-            eWolf,
-            eGumihoH,
-            eGumihoA,
-            eGumihoIdle,
-            eHeogho,
-            eMax
+            emtBoar,
+            emtBird,
+            emtWolf,
+            emtGumihoH,
+            emtGumihoA,
+            emtGumihoIdle,
+            emtHeogho,
+            emtMax
         }
 
         namespace DetailType
         {
             public enum _ENormalType_
             {
-                eBoar,
-                eBird,
-                eWolf,
-                eMax
+                entBoar,
+                entBird,
+                entWolf,
+                entMax
             }
 
             public enum _EBossType_
             {
-                eGumihoH,
-                eGumihoA,
-                eGumihoIdle,
-                eHeogho,
-                eMax
+                ebtGumihoH,
+                ebtGumihoA,
+                ebtGumihoIdle,
+                ebtHeogho,
+                ebtMax
             }
         }
     }
 
 
-        public enum _ECharacterImageType_
-        {
-            God,
-            Zero,
-            Tam,
-            Gumiho,
-            Heogho,
-            eMax
-        }
+    public enum _ECharacterImageType_
+    {
+        God,
+        Zero,
+        Tam,
+        Gumiho,
+        Heogho,
+        eMax
+    }
 
 
     namespace UI
@@ -157,9 +151,9 @@ namespace PublicEnums
         {
             public enum _EHPUIType_
             {
-                ePlayer,
-                eBoss,
-                eMax
+                ehutPlayer,
+                ehutBoss,
+                ehutMax
             }
         }
     }
@@ -168,114 +162,114 @@ namespace PublicEnums
     {
         public enum _EStateType_
         {
-            eIdle,
-            eMove,
-            eDash,
-            eAttack,
-            eChase,
-            eBattleIdle,
-            eSkill,
-            eLine,
-            eOption,
-            eDamaged,
-            eStagger,
-            eGroggy,
-            eChangePattern,
-            eDie,
-            eMax
+            estIdle,
+            estMove,
+            estDash,
+            estAttack,
+            estChase,
+            estBattleIdle,
+            estSkill,
+            estLine,
+            estOption,
+            estDamaged,
+            estStagger,
+            estGroggy,
+            estChangePattern,
+            estDie,
+            estMax
         }
 
         public enum _EGameStateType_
         {
-            eisStop,
-            eisLine,
-            eisOption,
-            eMax
+            egstIsStop,
+            egstIsLine,
+            egstIsOption,
+            egstMax
         }
 
         public enum _ESkillType_
         {
-            eCrow,
-            eGumiho,
-            eHeogho,
-            eMax
+            estCrow,
+            estGumiho,
+            estHeogho,
+            estMax
         }
     }
 
     public enum _EObjectType_
     {
-        ePlayer,
-        eMonster,
-        eNormal,
-        eBoss,
-        eMax
+        eotPlayer,
+        eotMonster,
+        eotNormal,
+        eotBoss,
+        eotMax
     }
 
     public enum _EIntStatType_
     {
-        eMaxHp,
-        eCurrentHp,
-        eDamage,
-        eDamage_Sec,
-        eDamage_Thi,
-        eDamage_For,
-        eDamage_Fif,
-        eDamage_Six,
-        eMax
+        eistMaxHp,
+        eistCurrentHp,
+        eistDamage,
+        eistDamage_Sec,
+        eistDamage_Thi,
+        eistDamage_For,
+        eistDamage_Fif,
+        eistDamage_Six,
+        eistMax
     }
 
     public enum _EFloatStatType_
     {
-        eSpeed,
-        eAttackRange,
-        eSight,
-        eAttackCool,
-        eCurrentAttackCool,
-        eMax
+        efstSpeed,
+        efstAttackRange,
+        efstSight,
+        efstAttackCool,
+        efstCurrentAttackCool,
+        efstMax
     }
 
     public enum _EPlayerAttackType_
     {
-        eWeak,
-        eStrong,
-        eMax
+        epatWeak,
+        epatStrong,
+        epatMax
     }
-    
+
     public enum _ESpawnStageType_
     {
-        eSecondRoom,
-        eSecondToThirdWay,
-        eThirdRoom,
-        eThirdToMiddleBoss,
-        eMiddleBossRoom_H,
-        eMiddleBossRoom_A,
-        eMiddleBossRoom_Idle,
-        eFinalBossRoom,
-        eMax
+        esstSecondRoom,
+        esstSecondToThirdWay,
+        esstThirdRoom,
+        esstThirdToMiddleBoss,
+        esstMiddleBossRoom_H,
+        esstMiddleBossRoom_A,
+        esstMiddleBossRoom_Idle,
+        esstFinalBossRoom,
+        esstMax
     }
 
     public enum _EInitCallType_
     {
-        eEnter_InGameScene,
-        eEnter_MiddleBossRoom,
-        eMax
+        eictEnter_InGameScene,
+        eictEnter_MiddleBossRoom,
+        eictMax
     }
 
     public enum _EOpenableWall_
     {
-        eSecondRoomToThirdRoomWall,
-        eThirdRoom,
-        eThirdRoomToFourthRoom,
-        eThirdRoomToMiddleBossRoom,
-        eMiddleBossRoom,
-        eFourthRoom,
-        eFinalBossRoom,
-        eMax
+        eowSecondRoomToThirdRoomWall,
+        eowThirdRoom,
+        eowThirdRoomToFourthRoom,
+        eowThirdRoomToMiddleBossRoom,
+        eowMiddleBossRoom,
+        eowFourthRoom,
+        eowFinalBossRoom,
+        eowMax
     }
 
     public enum _EOpenableTrigger_
     {
-        eFrontCanBrokenWall,
-        eMax
+        eotFrontCanBrokenWall,
+        eotMax
     }
 }

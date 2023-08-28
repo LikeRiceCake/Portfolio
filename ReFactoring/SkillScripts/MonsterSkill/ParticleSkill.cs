@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticleSkill : MonoBehaviour
 {
-    public int damage { get; set; }
+    public int m_damage { get; set; }
 
     private void OnParticleCollision(GameObject other)
     {
@@ -13,7 +13,7 @@ public class ParticleSkill : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log($"other ¡¯¿‘ : {other}");
-            other.GetComponent<IStat>().GetStat().UnderAttack(damage);
+            other.GetComponent<IStat>().GetStat().UnderAttack(m_damage);
             Debug.Log(other);
         }
     }

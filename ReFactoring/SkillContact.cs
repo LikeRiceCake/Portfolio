@@ -12,40 +12,40 @@ public class SkillContact : MonoBehaviour, IDialogueEventSubject
         myObs = new List<IDialogueEventObserver>();
     }
 
-    public void AddObserver(IDialogueEventObserver ob)
+    public void AddObserver(IDialogueEventObserver _ob)
     {
-        myObs.Add(ob);
+        myObs.Add(_ob);
     }
 
-    public void Notify(_EDialogueEventType_ type)
+    public void Notify(_EDialogueEventType_ _type)
     {
         foreach (var ob in myObs)
-            ob.ReactNotify(type);
+            ob.ReactNotify(_type);
     }
 
-    public void RemoveObserver(IDialogueEventObserver ob)
+    public void RemoveObserver(IDialogueEventObserver _ob)
     {
-        myObs.Remove(ob);
+        myObs.Remove(_ob);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider _other)
     {
-        if (other.transform.CompareTag("PlayerSkill"))
+        if (_other.transform.CompareTag("PlayerSkill"))
         {
             switch (transform.tag)
             {
                 case "SkillWall(CanBrake)":
-                    Destroy(other.gameObject);
-                    Notify(_EDialogueEventType_.eEndBrakeWall);
+                    Destroy(_other.gameObject);
+                    Notify(_EDialogueEventType_.edetEndBrakeWall);
                     gameObject.SetActive(false);
                     break;
                 case "SkillWall(CantBrake)":
-                    Destroy(other.gameObject);
-                    Notify(_EDialogueEventType_.eEndShotWall);
+                    Destroy(_other.gameObject);
+                    Notify(_EDialogueEventType_.edetEndShotWall);
                     break;
                 case "PondCrystal":
-                    Destroy(other.gameObject);
-                    Notify(_EDialogueEventType_.ePondCrystal);
+                    Destroy(_other.gameObject);
+                    Notify(_EDialogueEventType_.edetPondCrystal);
                     break;
             }
         }

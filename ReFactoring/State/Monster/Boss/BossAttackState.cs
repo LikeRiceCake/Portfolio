@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class BossAttackState : MonsterAttackState
 {
-    string animName;
+    string m_animName;
 
     MonsterPattern myPattern;
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
         StartCoroutine(AfterAttack());
         PatternActivate();
@@ -19,14 +19,14 @@ public class BossAttackState : MonsterAttackState
     void PatternActivate()
     {
         myPattern = GetComponent<MonsterPattern>();
-        animName = myPattern.SetRandomSkill();
+        m_animName = myPattern.SetRandomSkill();
     }
 
     protected override IEnumerator AfterAttack()
     {
         while (true)
         {
-            if (myAnim.GetCurrentAnimatorStateInfo(0).IsName(animName))
+            if (myAnim.GetCurrentAnimatorStateInfo(0).IsName(m_animName))
                 break;
 
             yield return null;
@@ -35,12 +35,12 @@ public class BossAttackState : MonsterAttackState
         yield return new WaitUntil(() => myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
 
         myStat.SetFloatStat(
-        _EFloatStatType_.eCurrentAttackCool,
-        myStat.GetFloatStat(_EFloatStatType_.eAttackCool) + (myStat.GetFloatStat(_EFloatStatType_.eCurrentAttackCool) * -1));
+        _EFloatStatType_.efstCurrentAttackCool,
+        myStat.GetFloatStat(_EFloatStatType_.efstAttackCool) + (myStat.GetFloatStat(_EFloatStatType_.efstCurrentAttackCool) * -1));
 
         Transform target = null;
 
-        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
         if (cols != null)
         {
@@ -51,9 +51,9 @@ public class BossAttackState : MonsterAttackState
             }
         }
 
-        if (Vector3.Distance(target.position, transform.position) <= myStat.GetFloatStat(_EFloatStatType_.eAttackRange))
-            stateManager.SetActionType(_EStateType_.eBattleIdle, _EObjectType_.eMonster);
+        if (Vector3.Distance(target.position, transform.position) <= myStat.GetFloatStat(_EFloatStatType_.efstAttackRange))
+            stateManager.SetActionType(_EStateType_.estBattleIdle, _EObjectType_.eotMonster);
         else
-            stateManager.SetActionType(_EStateType_.eChase, _EObjectType_.eMonster);
+            stateManager.SetActionType(_EStateType_.estChase, _EObjectType_.eotMonster);
     }
 }

@@ -10,12 +10,12 @@ public class BirdStat : MonsterStat
     const int BIRD_DAMAGE = 20;
     const float BIRD_SPEED = 1.5f;
     const float BIRD_SIGHT = 15f;
-    const float BIRD_ATTACKRANGE = 15f;
-    const float BIRD_ATTACKCOOL = 3f;
+    const float BIRD_ATTACK_RANGE = 15f;
+    const float BIRD_ATTACK_COOL = 3f;
 
-    public BirdStat(StateManager stateManager) : base(stateManager)
+    public BirdStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 
     protected override void InitStat()
@@ -25,8 +25,8 @@ public class BirdStat : MonsterStat
         myStat.damage = BIRD_DAMAGE;
         myStat.speed = BIRD_SPEED;
         myStat.sight = BIRD_SIGHT;
-        myStat.attackRange = BIRD_ATTACKRANGE;
-        myStat.attackCool = BIRD_ATTACKCOOL;
+        myStat.attackRange = BIRD_ATTACK_RANGE;
+        myStat.attackCool = BIRD_ATTACK_COOL;
         myStat.currentAttackCool = 0f;
     }
 }

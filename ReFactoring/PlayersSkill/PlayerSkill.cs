@@ -6,17 +6,11 @@ using PublicEnums;
 
 public abstract class PlayerSkill : MonoBehaviour
 {
-    [SerializeField]
-    protected float COOLTIME;
-
-    [SerializeField]
-    protected int skillValue;
-
-    public float currentCoolTime { get; set; }
+    public float m_currentCoolTime { get; set; }
 
     protected Sprite mySprite;
 
-    protected Image skillUIImage;
+    protected Image skillImage;
 
     protected ResourceManager resourceManager;
 
@@ -24,9 +18,9 @@ public abstract class PlayerSkill : MonoBehaviour
 
     public virtual void ChangeImage()
     {
-        skillUIImage.sprite = mySprite;
+        skillImage.sprite = mySprite;
         coolImage.sprite = mySprite;
-        if(currentCoolTime <= 0)
+        if(m_currentCoolTime <= 0)
             coolImage.gameObject.SetActive(false);
         else
             coolImage.gameObject.SetActive(true);
@@ -34,23 +28,23 @@ public abstract class PlayerSkill : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(currentCoolTime > 0f)
+        if(m_currentCoolTime > 0f)
         {
-            currentCoolTime -= Time.deltaTime;
-            if (currentCoolTime <= 0)
+            m_currentCoolTime -= Time.deltaTime;
+            if (m_currentCoolTime <= 0)
                 coolImage.gameObject.SetActive(false);
         }
     }
 
-    public virtual void SkillFunction()
+    public virtual void ActivateSkillFunction()
     {
         coolImage.gameObject.SetActive(true);
     }
 
     protected virtual void Awake()
     {
-        skillUIImage = GameObject.Find("Skill_Image").GetComponent<Image>();
-        coolImage = skillUIImage.transform.Find("Cool_Image").GetComponent<Image>();
+        skillImage = GameObject.Find("Skill_Image").GetComponent<Image>();
+        coolImage = skillImage.transform.Find("Cool_Image").GetComponent<Image>();
         resourceManager = GameObject.Find("Manager").GetComponent<ResourceManager>();
     }
 }

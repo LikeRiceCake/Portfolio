@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum _EHeughoSkill_30_
+enum _EHeughoSkill30_
 {
-    eSwingRightHand_Horizontal,
-    eSwingBothHand_Vertical,
-    eHowling_RLAuraAttack,
-    eSwingRLR_Horizontal,
-    eHowling_BlackLightning,
-    eBlackAura_Field,
-    eMax
+    ehsSwingRightHand,
+    ehsSwingBothHand,
+    ehsHowling_RLAuraAttack,
+    ehsSwingRLR_Horizontal,
+    ehsHowling_BlackLightning,
+    ehsActivateField,
+    ehsMax
 }
 
-public class HeughoPattern_30 : HeughoPattern_50
+public class HeughoPattern30 : HeughoPattern50
 {
     private void Start()
     {
-        BlackAura_Field();
+        ActivateField();
     }
 
-    void BlackAura_Field()
+    void ActivateField()
     {
         skillPrefab = resourceManager.LoadSkillPrefab("Prefabs/SkillObject/BlackAura");
 
@@ -31,6 +31,6 @@ public class HeughoPattern_30 : HeughoPattern_50
 
     public override _EMonsterPattern_ GetNowPattern()
     {
-        return _EMonsterPattern_.eHeogho_30;
+        return _EMonsterPattern_.empHeogho30;
     }
 }

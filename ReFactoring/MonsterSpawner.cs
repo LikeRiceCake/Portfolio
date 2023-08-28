@@ -6,7 +6,7 @@ using PublicEnums;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    MonsterFactory[] myFactory;
+    MonsterFactory[] myFactories;
 
     GameObject[][] myMonsters;
 
@@ -18,57 +18,57 @@ public class MonsterSpawner : MonoBehaviour
     {
         dieManager = GameObject.Find("Manager").GetComponent<DieManager>();
 
-        myFactory = new MonsterFactory[(int)_EMonsterType_.eMax];
-        myMonsters = new GameObject[(int)_ESpawnStageType_.eMax][];
-        spawnPos = new GameObject[(int)_ESpawnStageType_.eMax][];
+        myFactories = new MonsterFactory[(int)_EMonsterType_.emtMax];
+        myMonsters = new GameObject[(int)_ESpawnStageType_.esstMax][];
+        spawnPos = new GameObject[(int)_ESpawnStageType_.esstMax][];
 
-        for (int i = 0; i < (int)_ESpawnStageType_.eMax; i++)
+        for (int i = 0; i < (int)_ESpawnStageType_.esstMax; i++)
         {
             spawnPos[i] = new GameObject[GameObject.Find(((_ESpawnStageType_)i).ToString()).transform.childCount];
             for (int j = 0; j < spawnPos[i].Length; j++)
                 spawnPos[i][j] = GameObject.Find(((_ESpawnStageType_)i).ToString()).transform.GetChild(j).gameObject;
         }
 
-        for (int i = 0; i < (int)_ESpawnStageType_.eMax; i++)
+        for (int i = 0; i < (int)_ESpawnStageType_.esstMax; i++)
             myMonsters[i] = new GameObject[spawnPos[i].Length];
 
-        myFactory[(int)_EMonsterType_.eBoar] = gameObject.AddComponent<BoarFactory>();
-        myFactory[(int)_EMonsterType_.eBird] = gameObject.AddComponent<BirdFactory>();
-        myFactory[(int)_EMonsterType_.eWolf] = gameObject.AddComponent<WolfFactory>();
-        myFactory[(int)_EMonsterType_.eGumihoH] = gameObject.AddComponent<GumihoHFactory>();
-        myFactory[(int)_EMonsterType_.eGumihoA] = gameObject.AddComponent<GumihoAFactory>();
-        myFactory[(int)_EMonsterType_.eGumihoIdle] = gameObject.AddComponent<GumihoIdleFactory>();
-        myFactory[(int)_EMonsterType_.eHeogho] = gameObject.AddComponent<HeoghoFactory>();
+        myFactories[(int)_EMonsterType_.emtBoar] = gameObject.AddComponent<BoarFactory>();
+        myFactories[(int)_EMonsterType_.emtBird] = gameObject.AddComponent<BirdFactory>();
+        myFactories[(int)_EMonsterType_.emtWolf] = gameObject.AddComponent<WolfFactory>();
+        myFactories[(int)_EMonsterType_.emtGumihoH] = gameObject.AddComponent<GumihoHFactory>();
+        myFactories[(int)_EMonsterType_.emtGumihoA] = gameObject.AddComponent<GumihoAFactory>();
+        myFactories[(int)_EMonsterType_.emtGumihoIdle] = gameObject.AddComponent<GumihoIdleFactory>();
+        myFactories[(int)_EMonsterType_.emtHeogho] = gameObject.AddComponent<HeoghoFactory>();
     }
 
     public void CreateMonsters()
     {
-        for (int i = 0; i < (int)_ESpawnStageType_.eMax; i++)
+        for (int i = 0; i < (int)_ESpawnStageType_.esstMax; i++)
         {
             for (int j = 0; j < spawnPos[i].Length; j++)
             {
                 switch (spawnPos[i][j].tag)
                 {
                     case "BoarSpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eBoar].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtBoar].CreateMonster();
                         break;
                     case "BirdSpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eBird].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtBird].CreateMonster();
                         break;
                     case "WolfSpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eWolf].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtWolf].CreateMonster();
                         break;
                     case "GumihoHSpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eGumihoH].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtGumihoH].CreateMonster();
                         break;
                     case "GumihoASpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eGumihoA].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtGumihoA].CreateMonster();
                         break;
                     case "GumihoIdleSpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eGumihoIdle].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtGumihoIdle].CreateMonster();
                         break;
                     case "HeoghoSpawn":
-                        myMonsters[i][j] = myFactory[(int)_EMonsterType_.eHeogho].CreateMonster();
+                        myMonsters[i][j] = myFactories[(int)_EMonsterType_.emtHeogho].CreateMonster();
                         break;
                 }
                 if (myMonsters[i][j].GetComponent<IDieSubject>() != null)
@@ -78,55 +78,55 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    public void CreateMonsters(_ESpawnStageType_ type)
+    public void CreateMonsters(_ESpawnStageType_ _type)
     {
-        for (int i = 0; i < spawnPos[(int)type].Length; i++)
+        for (int i = 0; i < spawnPos[(int)_type].Length; i++)
         {
-            switch (spawnPos[(int)type][i].tag)
+            switch (spawnPos[(int)_type][i].tag)
             {
                 case "BoarSpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eBoar].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtBoar].CreateMonster();
                     break;
                 case "BirdSpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eBird].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtBird].CreateMonster();
                     break;
                 case "WolfSpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eWolf].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtWolf].CreateMonster();
                     break;
                 case "GumihoHSpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eGumihoH].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtGumihoH].CreateMonster();
                     break;
                 case "GumihoASpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eGumihoA].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtGumihoA].CreateMonster();
                     break;
                 case "GumihoIdleSpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eGumihoIdle].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtGumihoIdle].CreateMonster();
                     break;
                 case "HeoghoSpawn":
-                    myMonsters[(int)type][i] = myFactory[(int)_EMonsterType_.eHeogho].CreateMonster();
+                    myMonsters[(int)_type][i] = myFactories[(int)_EMonsterType_.emtHeogho].CreateMonster();
                     break;
             }
 
-            if(myMonsters[(int)type][i].GetComponent<IDieSubject>() != null)
+            if(myMonsters[(int)_type][i].GetComponent<IDieSubject>() != null)
             {
-                dieManager.AddMyFunc(myMonsters[(int)type][i].GetComponent<IDieSubject>());
+                dieManager.AddMyFunc(myMonsters[(int)_type][i].GetComponent<IDieSubject>());
             }
-            myMonsters[(int)type][i].SetActive(false);
+            myMonsters[(int)_type][i].SetActive(false);
         }
     }
 
-    public void SpawnMonsters(_ESpawnStageType_ type)
+    public void SpawnMonsters(_ESpawnStageType_ _type)
     {
-        for (int i = 0; i < myMonsters[(int)type].Length; i++)
+        for (int i = 0; i < myMonsters[(int)_type].Length; i++)
         {
-            myMonsters[(int)type][i].SetActive(true);
-            myMonsters[(int)type][i].transform.position = spawnPos[(int)type][i].transform.position;
+            myMonsters[(int)_type][i].SetActive(true);
+            myMonsters[(int)_type][i].transform.position = spawnPos[(int)_type][i].transform.position;
         }
     }
 
     public void SpawnMonsters()
     {
-        for (int i = 0; i < (int)_ESpawnStageType_.eMax; i++)
+        for (int i = 0; i < (int)_ESpawnStageType_.esstMax; i++)
         {
             for (int j = 0; j < myMonsters[i].Length; j++)
             {
@@ -138,17 +138,17 @@ public class MonsterSpawner : MonoBehaviour
 
     public void ClearMonsterList()
     {
-        for (int i = 0; i < (int)_ESpawnStageType_.eMax; i++)
+        for (int i = 0; i < (int)_ESpawnStageType_.esstMax; i++)
         {
             for (int j = 0; j < myMonsters[i].Length; j++)
                 myMonsters[i].SetValue(null, j);
         }
     }
 
-    public void ClearMonsterList(_ESpawnStageType_ type)
+    public void ClearMonsterList(_ESpawnStageType_ _type)
     {
-        for (int i = 0; i < myMonsters[(int)type].Length; i++)
-            myMonsters[(int)type].SetValue(null, i);
+        for (int i = 0; i < myMonsters[(int)_type].Length; i++)
+            myMonsters[(int)_type].SetValue(null, i);
     }
 
     public GameObject[][] GetMonsters()

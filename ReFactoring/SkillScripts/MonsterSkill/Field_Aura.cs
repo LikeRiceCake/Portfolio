@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Field_Aura : FixedSkill
 {
-    float currentTime;
+    float m_currentTime;
 
     const float SECOND = 3f;
 
@@ -20,18 +20,18 @@ public class Field_Aura : FixedSkill
 
     protected override void BehaviourFunc()
     {
-        if(currentTime > 0)
-            currentTime -= Time.deltaTime;
+        if(m_currentTime > 0)
+            m_currentTime -= Time.deltaTime;
     }
 
     protected override void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.CompareTag("Player"))
         {
-            if(currentTime <= 0)
+            if(m_currentTime <= 0)
             {
                 //collision.transform.GetComponent<IDamaged>().GetDamaged(Attack);
-                currentTime = SECOND;
+                m_currentTime = SECOND;
             }
         }
     }

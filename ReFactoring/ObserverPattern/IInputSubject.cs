@@ -6,6 +6,6 @@ using UnityEngine;
 
 public interface IInputSubject
 {
-    void AddObserver(IInputKeyClickObserver ob);
-    void RemoveObserver(IInputKeyClickObserver ob);
+    void AddObserver(IInputKeyClickObserver _ob);
+    void RemoveObserver(IInputKeyClickObserver _ob);
 }

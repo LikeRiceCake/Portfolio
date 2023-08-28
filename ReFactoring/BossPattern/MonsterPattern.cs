@@ -4,12 +4,12 @@ using UnityEngine;
 
 public enum _EMonsterPattern_
 {
-    eGumiho_100,
-    eGumiho_70,
-    eHeogho_100,
-    eHeogho_50,
-    eHeogho_30,
-    eMax
+    empGumiho100,
+    empGumiho70,
+    empHeogho100,
+    empHeogho50,
+    empHeogho30,
+    empMax
 }
 
 public abstract class MonsterPattern : MonoBehaviour

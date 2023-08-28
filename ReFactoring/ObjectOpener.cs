@@ -17,34 +17,34 @@ public class ObjectOpener : MonoBehaviour
 
     public void Start()
     {
-        walls = new GameObject[(int)_EOpenableWall_.eMax];
+        walls = new GameObject[(int)_EOpenableWall_.eowMax];
 
-        walls[(int)_EOpenableWall_.eSecondRoomToThirdRoomWall] = GameObject.Find("BlockWall").transform.Find("SecondRoomToThirdRoom").gameObject;
-        walls[(int)_EOpenableWall_.eThirdRoom] = GameObject.Find("BlockWall").transform.Find("ThirdRoom").gameObject;
-        walls[(int)_EOpenableWall_.eThirdRoomToFourthRoom] = GameObject.Find("BlockWall").transform.Find("ThirdRoomToFourthRoom").gameObject;
-        walls[(int)_EOpenableWall_.eThirdRoomToMiddleBossRoom] = GameObject.Find("BlockWall").transform.Find("ThirdRoomToMiddleBossRoom").gameObject;
-        walls[(int)_EOpenableWall_.eMiddleBossRoom] = GameObject.Find("BlockWall").transform.Find("MiddleBossRoom").gameObject;
-        walls[(int)_EOpenableWall_.eFourthRoom] = GameObject.Find("BlockWall").transform.Find("FourthRoom").gameObject;
-        walls[(int)_EOpenableWall_.eFinalBossRoom] = GameObject.Find("BlockWall").transform.Find("FinalBossRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowSecondRoomToThirdRoomWall] = GameObject.Find("BlockWall").transform.Find("SecondRoomToThirdRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowThirdRoom] = GameObject.Find("BlockWall").transform.Find("ThirdRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowThirdRoomToFourthRoom] = GameObject.Find("BlockWall").transform.Find("ThirdRoomToFourthRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowThirdRoomToMiddleBossRoom] = GameObject.Find("BlockWall").transform.Find("ThirdRoomToMiddleBossRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowMiddleBossRoom] = GameObject.Find("BlockWall").transform.Find("MiddleBossRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowFourthRoom] = GameObject.Find("BlockWall").transform.Find("FourthRoom").gameObject;
+        walls[(int)_EOpenableWall_.eowFinalBossRoom] = GameObject.Find("BlockWall").transform.Find("FinalBossRoom").gameObject;
 
-        triggers = new GameObject[(int)_EOpenableTrigger_.eMax];
+        triggers = new GameObject[(int)_EOpenableTrigger_.eotMax];
 
-        triggers[(int)_EOpenableTrigger_.eFrontCanBrokenWall] = GameObject.Find("DialogueTriggers").transform.Find("FrontCanBrokenWall").gameObject;
+        triggers[(int)_EOpenableTrigger_.eotFrontCanBrokenWall] = GameObject.Find("DialogueTriggers").transform.Find("FrontCanBrokenWall").gameObject;
     }
 
-    public void CloseWall(_EOpenableWall_ wall)
+    public void CloseWall(_EOpenableWall_ _type)
     {
-        walls[(int)wall].SetActive(true);
+        walls[(int)_type].SetActive(true);
     }
     
-    public void OpenWall(_EOpenableWall_ wall)
+    public void OpenWall(_EOpenableWall_ _type)
     {
-        walls[(int)wall].SetActive(false);
+        walls[(int)_type].SetActive(false);
     }
 
-    public void OepnTrigger(_EOpenableTrigger_ trigger)
+    public void OepnTrigger(_EOpenableTrigger_ _type)
     {
-        triggers[(int)trigger].SetActive(true);
-        initHelper.CallInit(_EInitCallType_.eEnter_MiddleBossRoom);
+        triggers[(int)_type].SetActive(true);
+        initHelper.CallInit(_EInitCallType_.eictEnter_MiddleBossRoom);
     }
 }

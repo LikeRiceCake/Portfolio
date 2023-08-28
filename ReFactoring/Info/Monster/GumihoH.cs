@@ -9,7 +9,7 @@ public class GumihoH : Gumiho
 {
     protected override void Awake()
     {
-        myType = _EMonsterType_.eGumihoH;
+        myType = _EMonsterType_.emtGumihoH;
 
         base.Awake();
     }
@@ -20,6 +20,6 @@ public class GumihoH : Gumiho
 
         base.Start();
 
-        gameObject.AddComponent<GumihoPattern_100>();
+        gameObject.AddComponent<GumihoPattern100>();
     }
 }

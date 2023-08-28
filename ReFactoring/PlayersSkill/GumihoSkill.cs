@@ -8,13 +8,18 @@ public class GumihoSkill : PlayerSkill
     GameObject spawnPos;
     GameObject spawnObject;
 
-    public override void SkillFunction()
+    const int DAMAGE = 30;
+
+    const float COOLTIME = 7f;
+
+    public override void ActivateSkillFunction()
     {
-        if (currentCoolTime <= 0)
+        if (m_currentCoolTime <= 0)
         {
-            base.SkillFunction();
-            Instantiate(spawnObject, spawnPos.transform.position, Camera.main.transform.rotation).GetComponent<Will_O_The_Wisp_Player>().destroyTime = COOLTIME;
-            currentCoolTime = COOLTIME;
+            base.ActivateSkillFunction();
+            Instantiate(spawnObject, spawnPos.transform.position, Camera.main.transform.rotation).GetComponent<Will_O_The_Wisp_Player>().m_destroyTime = COOLTIME;
+            // 데미지 설정 필요
+            m_currentCoolTime = COOLTIME;
         }
     }
 
@@ -31,16 +36,12 @@ public class GumihoSkill : PlayerSkill
     protected override void Update()
     {
         base.Update();
-        if (skillUIImage.sprite.name == "GumihoSkillSprite")
-            coolImage.fillAmount = currentCoolTime / COOLTIME;
+        if (skillImage.sprite.name == "GumihoSkillSprite")
+            coolImage.fillAmount = m_currentCoolTime / COOLTIME;
     }
 
     void Start()
     {
-        skillValue = 30;
-
-        COOLTIME = 5f;
-
-        currentCoolTime = 0f;
+        m_currentCoolTime = 0f;
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class BossMoveState : MonsterMoveState
 {
-    const float CHANGE_MOVEMENT = 3.5f;
+    const float CHANGE_MOVEMENT_TIME = 3.5f;
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
-        Invoke("ChangeMovement", CHANGE_MOVEMENT);
+        base.DoAction(_type);
+        Invoke("ChangeMovement", CHANGE_MOVEMENT_TIME);
     }
 
     public override void ExitState()
@@ -27,7 +27,7 @@ public class BossMoveState : MonsterMoveState
 
         while (true)
         {
-            transform.position += transform.forward * myStat.GetFloatStat(_EFloatStatType_.eSpeed) * Time.deltaTime;
+            transform.position += transform.forward * myStat.GetFloatStat(_EFloatStatType_.efstSpeed) * Time.deltaTime;
 
             yield return null;
         }
@@ -37,14 +37,14 @@ public class BossMoveState : MonsterMoveState
     {
         while (true)
         {
-            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
             if (cols != null)
             {
                 foreach (var col in cols)
                 {
                     if (col.CompareTag("Player"))
-                        stateManager.SetActionType(_EStateType_.eChase, _EObjectType_.eMonster);
+                        stateManager.SetActionType(_EStateType_.estChase, _EObjectType_.eotMonster);
                 }
             }
 
@@ -54,6 +54,6 @@ public class BossMoveState : MonsterMoveState
 
     void ChangeMovement()
     {
-        stateManager.SetActionType(_EStateType_.eMove, _EObjectType_.eMonster);
+        stateManager.SetActionType(_EStateType_.estMove, _EObjectType_.eotMonster);
     }
 }

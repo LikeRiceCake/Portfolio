@@ -16,7 +16,7 @@ public abstract class State : MonoBehaviour
         myStat = GetComponent<IStat>().GetStat();
     }
 
-    public abstract void DoAction(_EStateType_ state);
+    public abstract void DoAction(_EStateType_ _type);
 
     public virtual void ExitState()
     {

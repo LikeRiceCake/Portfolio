@@ -5,7 +5,7 @@ using PublicEnums.State;
 
 public class PlayerDieState : PlayerState
 {
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
         myAnim.SetTrigger("Die");
 

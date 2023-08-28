@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ForwardMoveObject : MonoBehaviour
 {
-    public float speed { get; set; }
+    public float m_speed { get; set; }
     public Transform target { get; set; }
 
     void Start()
@@ -28,7 +28,7 @@ public class ForwardMoveObject : MonoBehaviour
 
         while (true)
         {
-            transform.position += transform.forward * Time.deltaTime * speed;
+            transform.position += transform.forward * Time.deltaTime * m_speed;
 
             yield return null;
         }

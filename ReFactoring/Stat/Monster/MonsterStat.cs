@@ -11,50 +11,50 @@ public class MonsterStat : Stat
     const int MONSTER_DAMAGE = 1;
     const float MONSTER_SPEED = 1f;
     const float MONSTER_SIGHT = 1f;
-    const float MONSTER_ATTACKRANGE = 1f;
-    const float MONSTER_ATTACKCOOL = 1f;
+    const float MONSTER_ATTACK_RANGE = 1f;
+    const float MONSTER_ATTACK_COOL = 1f;
 
     protected EnemyStat myStat;
 
-    public MonsterStat(StateManager stateManager) : base(stateManager)
+    public MonsterStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 
-    public override void UnderAttack(int damage)
+    public override void UnderAttack(int _damage)
     {
-        if (stateManager.currentState != _EStateType_.eDie)
+        if (stateManager.currentState != _EStateType_.estDie)
         {
-            myStat.currentHp -= damage;
+            myStat.currentHp -= _damage;
 
             if (CheckDie())
-                stateManager.SetActionType(_EStateType_.eDie, _EObjectType_.eMonster);
+                stateManager.SetActionType(_EStateType_.estDie, _EObjectType_.eotMonster);
         }
     }
 
-    public override int GetDamage(_EIntStatType_ select)
+    public override int GetDamage(_EIntStatType_ _type)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eDamage:
-            case _EIntStatType_.eDamage_Sec:
-            case _EIntStatType_.eDamage_Thi:
-            case _EIntStatType_.eDamage_For:
-            case _EIntStatType_.eDamage_Fif:
-            case _EIntStatType_.eDamage_Six:
+            case _EIntStatType_.eistDamage:
+            case _EIntStatType_.eistDamage_Sec:
+            case _EIntStatType_.eistDamage_Thi:
+            case _EIntStatType_.eistDamage_For:
+            case _EIntStatType_.eistDamage_Fif:
+            case _EIntStatType_.eistDamage_Six:
                 return myStat.damage;
         }
 
         return 0;
     }
 
-    public override int GetIntStat(_EIntStatType_ select)
+    public override int GetIntStat(_EIntStatType_ _type)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eMaxHp:
+            case _EIntStatType_.eistMaxHp:
                 return myStat.maxHp;
-            case _EIntStatType_.eCurrentHp:
+            case _EIntStatType_.eistCurrentHp:
                 return myStat.currentHp;
         }
 
@@ -72,38 +72,38 @@ public class MonsterStat : Stat
 
         myStat.sight = MONSTER_SIGHT;
 
-        myStat.attackRange = MONSTER_ATTACKRANGE;
+        myStat.attackRange = MONSTER_ATTACK_RANGE;
 
-        myStat.attackCool = MONSTER_ATTACKCOOL;
+        myStat.attackCool = MONSTER_ATTACK_COOL;
 
         myStat.currentAttackCool = 0f;
     }
 
-    public override void PlusHp(_EIntStatType_ select, int value)
+    public override void PlusHp(_EIntStatType_ _type, int _value)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eMaxHp:
-                myStat.maxHp += value;
+            case _EIntStatType_.eistMaxHp:
+                myStat.maxHp += _value;
                 break;
-            case _EIntStatType_.eCurrentHp:
-                if (myStat.currentHp + value <= myStat.maxHp)
-                    myStat.currentHp += value;
+            case _EIntStatType_.eistCurrentHp:
+                if (myStat.currentHp + _value <= myStat.maxHp)
+                    myStat.currentHp += _value;
                 else
                     myStat.currentHp = myStat.maxHp;
                 break;
         }
     }
 
-    public override void SetHp(_EIntStatType_ select, int value)
+    public override void SetHp(_EIntStatType_ _type, int _value)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eMaxHp:
-                myStat.maxHp = value;
+            case _EIntStatType_.eistMaxHp:
+                myStat.maxHp = _value;
                 break;
-            case _EIntStatType_.eCurrentHp:
-                myStat.currentHp = value;
+            case _EIntStatType_.eistCurrentHp:
+                myStat.currentHp = _value;
                 break;
         }
     }
@@ -116,31 +116,31 @@ public class MonsterStat : Stat
         return false;
     }
 
-    public override float GetFloatStat(_EFloatStatType_ type)
+    public override float GetFloatStat(_EFloatStatType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EFloatStatType_.eSpeed:
+            case _EFloatStatType_.efstSpeed:
                 return myStat.speed;
-            case _EFloatStatType_.eAttackRange:
+            case _EFloatStatType_.efstAttackRange:
                 return myStat.attackRange;
-            case _EFloatStatType_.eSight:
+            case _EFloatStatType_.efstSight:
                 return myStat.sight;
-            case _EFloatStatType_.eAttackCool:
+            case _EFloatStatType_.efstAttackCool:
                 return myStat.attackCool;
-            case _EFloatStatType_.eCurrentAttackCool:
+            case _EFloatStatType_.efstCurrentAttackCool:
                 return myStat.currentAttackCool;
         }
 
         return 0;
     }
 
-    public override void SetFloatStat(_EFloatStatType_ type, float value)
+    public override void SetFloatStat(_EFloatStatType_ _type, float _value)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EFloatStatType_.eCurrentAttackCool:
-                myStat.currentAttackCool += value;
+            case _EFloatStatType_.efstCurrentAttackCool:
+                myStat.currentAttackCool += _value;
                 break;
         }
     }

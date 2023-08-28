@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IDialogueEventObserver
 {
-    void ReactNotify(_EDialogueEventType_ type);
+    void ReactNotify(_EDialogueEventType_ _type);
 
     void AddMyFunc();
 }

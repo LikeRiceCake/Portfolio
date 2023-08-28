@@ -10,10 +10,10 @@ public class TestButton : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             GameObject.Find("Player").GetComponent<IStat>().GetStat().UnderAttack(
-                GameObject.Find("Player").GetComponent<IStat>().GetStat().GetIntStat(PublicEnums._EIntStatType_.eMaxHp));
+                GameObject.Find("Player").GetComponent<IStat>().GetStat().GetIntStat(PublicEnums._EIntStatType_.eistMaxHp));
         }
         
         if(Input.GetKeyDown(KeyCode.F1))
-            GameObject.Find("Dialogue").GetComponent<DialogueEvent>().ReactNotify(_EDialogueEventType_.eTutorial);
+            GameObject.Find("Dialogue").GetComponent<DialogueEvent>().ReactNotify(_EDialogueEventType_.edetTutorial);
     }
 }
