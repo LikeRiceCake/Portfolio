@@ -109,7 +109,7 @@ namespace PublicEnums
             emtGumihoA,
             emtGumihoIdle,
             emtHeogho,
-            eMax
+            emtMax
         }
 
         namespace DetailType
