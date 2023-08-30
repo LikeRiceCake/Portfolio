@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface IInputKeyClickObserver
 {
-    void ReactNotify(_EInputType_ type, _EInputDetailType_ dType);
+    void ReactNotify(_EInputType_ _type, _EInputDetailType_ _dType);
 }

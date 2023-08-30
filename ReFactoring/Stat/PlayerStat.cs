@@ -10,16 +10,16 @@ using UnityEngine;
 public class PlayerStat : Stat
 {
     const int PLAYER_MAX_HP = 130;
-    readonly int[] PLAYER_DAMAGE = { 30, 4, 5, 5, 7, 10 };
+    readonly int[] PLAYER_DAMAGES = { 30, 4, 5, 5, 7, 10 };
     const float PLAYER_SPEED = 15f;
 
     CharacterStat myStat;
 
     public CharacterHPUI hpUI { get; set; }
 
-    public PlayerStat(StateManager stateManager) : base(stateManager)
+    public PlayerStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 
     protected override bool CheckDie()
@@ -30,50 +30,50 @@ public class PlayerStat : Stat
         return false;
     }
 
-    public override void UnderAttack(int damage)
+    public override void UnderAttack(int _damage)
     {
-        if (stateManager.currentState != _EStateType_.eDie)
+        if (stateManager.currentState != _EStateType_.estDie)
         {
-            myStat.currentHp -= damage;
+            myStat.currentHp -= _damage;
 
             hpUI.ChangeCharacterHPUI(
-                _EHPUIType_.ePlayer,
+                _EHPUIType_.ehutPlayer,
                 myStat.currentHp,
                 myStat.maxHp);
 
             if (CheckDie())
-                stateManager.SetActionType(_EStateType_.eDie, _EObjectType_.ePlayer);
+                stateManager.SetActionType(_EStateType_.estDie, _EObjectType_.eotPlayer);
         }
     }
 
-    public override int GetDamage(_EIntStatType_ select)
+    public override int GetDamage(_EIntStatType_ _type)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eDamage:
-                return myStat.damage[_EIntStatType_.eDamage - _EIntStatType_.eDamage];
-            case _EIntStatType_.eDamage_Sec:
-                return myStat.damage[_EIntStatType_.eDamage_Sec - _EIntStatType_.eDamage];
-            case _EIntStatType_.eDamage_Thi:
-                return myStat.damage[_EIntStatType_.eDamage_Thi - _EIntStatType_.eDamage];
-            case _EIntStatType_.eDamage_For:
-                return myStat.damage[_EIntStatType_.eDamage_For - _EIntStatType_.eDamage];
-            case _EIntStatType_.eDamage_Fif:
-                return myStat.damage[_EIntStatType_.eDamage_Fif - _EIntStatType_.eDamage];
-            case _EIntStatType_.eDamage_Six:
-                return myStat.damage[_EIntStatType_.eDamage_Six - _EIntStatType_.eDamage];
+            case _EIntStatType_.eistDamage:
+                return myStat.damage[_EIntStatType_.eistDamage - _EIntStatType_.eistDamage];
+            case _EIntStatType_.eistDamage_Sec:
+                return myStat.damage[_EIntStatType_.eistDamage_Sec - _EIntStatType_.eistDamage];
+            case _EIntStatType_.eistDamage_Thi:
+                return myStat.damage[_EIntStatType_.eistDamage_Thi - _EIntStatType_.eistDamage];
+            case _EIntStatType_.eistDamage_For:
+                return myStat.damage[_EIntStatType_.eistDamage_For - _EIntStatType_.eistDamage];
+            case _EIntStatType_.eistDamage_Fif:
+                return myStat.damage[_EIntStatType_.eistDamage_Fif - _EIntStatType_.eistDamage];
+            case _EIntStatType_.eistDamage_Six:
+                return myStat.damage[_EIntStatType_.eistDamage_Six - _EIntStatType_.eistDamage];
         }
 
         return 0;
     }
 
-    public override int GetIntStat(_EIntStatType_ select)
+    public override int GetIntStat(_EIntStatType_ _type)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eMaxHp:
+            case _EIntStatType_.eistMaxHp:
                 return myStat.maxHp;
-            case _EIntStatType_.eCurrentHp:
+            case _EIntStatType_.eistCurrentHp:
                 return myStat.currentHp;
         }
 
@@ -85,43 +85,43 @@ public class PlayerStat : Stat
         myStat.maxHp = PLAYER_MAX_HP;
         myStat.currentHp = PLAYER_MAX_HP;
 
-        myStat.damage = new int[(int)_EPlayerDamageType_.eMax];
+        myStat.damage = new int[(int)_EPlayerDamageType_.epdtMax];
 
-        myStat.damage[(int)_EPlayerDamageType_.eWeak_1] = PLAYER_DAMAGE[(int)_EPlayerDamageType_.eWeak_1];
-        myStat.damage[(int)_EPlayerDamageType_.eWeak_2] = PLAYER_DAMAGE[(int)_EPlayerDamageType_.eWeak_2];
-        myStat.damage[(int)_EPlayerDamageType_.eWeak_3] = PLAYER_DAMAGE[(int)_EPlayerDamageType_.eWeak_3];
-        myStat.damage[(int)_EPlayerDamageType_.eW1_Strong_1] = PLAYER_DAMAGE[(int)_EPlayerDamageType_.eW1_Strong_1];
-        myStat.damage[(int)_EPlayerDamageType_.eW2_Strong_2] = PLAYER_DAMAGE[(int)_EPlayerDamageType_.eW2_Strong_2];
-        myStat.damage[(int)_EPlayerDamageType_.eW3_Strong_3] = PLAYER_DAMAGE[(int)_EPlayerDamageType_.eW3_Strong_3];
+        myStat.damage[(int)_EPlayerDamageType_.epdtWeak_1] = PLAYER_DAMAGES[(int)_EPlayerDamageType_.epdtWeak_1];
+        myStat.damage[(int)_EPlayerDamageType_.epdtWeak_2] = PLAYER_DAMAGES[(int)_EPlayerDamageType_.epdtWeak_2];
+        myStat.damage[(int)_EPlayerDamageType_.epdtWeak_3] = PLAYER_DAMAGES[(int)_EPlayerDamageType_.epdtWeak_3];
+        myStat.damage[(int)_EPlayerDamageType_.epdtW1_Strong_1] = PLAYER_DAMAGES[(int)_EPlayerDamageType_.epdtW1_Strong_1];
+        myStat.damage[(int)_EPlayerDamageType_.epdtW2_Strong_2] = PLAYER_DAMAGES[(int)_EPlayerDamageType_.epdtW2_Strong_2];
+        myStat.damage[(int)_EPlayerDamageType_.epdtW3_Strong_3] = PLAYER_DAMAGES[(int)_EPlayerDamageType_.epdtW3_Strong_3];
 
         myStat.speed = PLAYER_SPEED;
     }
 
-    public override void PlusHp(_EIntStatType_ select, int value)
+    public override void PlusHp(_EIntStatType_ _type, int _value)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eMaxHp:
-                myStat.maxHp += value;
+            case _EIntStatType_.eistMaxHp:
+                myStat.maxHp += _value;
                 break;
-            case _EIntStatType_.eCurrentHp:
-                if (myStat.currentHp + value <= myStat.maxHp)
-                    myStat.currentHp += value;
+            case _EIntStatType_.eistCurrentHp:
+                if (myStat.currentHp + _value <= myStat.maxHp)
+                    myStat.currentHp += _value;
                 else
                     myStat.currentHp = myStat.maxHp;
                 break;
         }
     }
 
-    public override void SetHp(_EIntStatType_ select, int value)
+    public override void SetHp(_EIntStatType_ _type, int _value)
     {
-        switch (select)
+        switch (_type)
         {
-            case _EIntStatType_.eMaxHp:
-                myStat.maxHp = value;
+            case _EIntStatType_.eistMaxHp:
+                myStat.maxHp = _value;
                 break;
-            case _EIntStatType_.eCurrentHp:
-                myStat.currentHp = value;
+            case _EIntStatType_.eistCurrentHp:
+                myStat.currentHp = _value;
                 break;
         }
     }
@@ -130,14 +130,14 @@ public class PlayerStat : Stat
     {
         switch (type)
         {
-            case _EFloatStatType_.eSpeed:
+            case _EFloatStatType_.efstSpeed:
                 return myStat.speed;
         }
 
         return 0;
     }
 
-    public override void SetFloatStat(_EFloatStatType_ type, float value)
+    public override void SetFloatStat(_EFloatStatType_ type, float _value)
     {
         switch (type)
         {

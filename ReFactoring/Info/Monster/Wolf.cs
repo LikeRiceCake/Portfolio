@@ -7,7 +7,7 @@ public class Wolf : Normal
 {
     protected override void Awake()
     {
-        myType = _EMonsterType_.eWolf;
+        myType = _EMonsterType_.emtWolf;
 
         base.Awake();
     }
@@ -26,10 +26,10 @@ public class Wolf : Normal
 
     public override void InitCollectionInfo()
     {
-        collectionInfo.name = "´Á´ë";
+        collectionInfo.name = "ï¿½ï¿½ï¿½ï¿½";
         collectionInfo.sprite = resourceManager.LoadMonsterSprite("Sprite/Wolf");
-        collectionInfo.description = "±ÙÁ¢¿¡¼­ ¹°¾î¶â´Â ¿ä±«ÀÌ´Ù.";
-        collectionInfo.numbering = (int)_EMonsterType_.eWolf + 1;
-        collectionInfo.skillDescription = "½ºÅ³ ¾øÀ½";
+        collectionInfo.description = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ä±«ï¿½Ì´ï¿½.";
+        collectionInfo.numbering = (int)_EMonsterType_.emtWolf + 1;
+        collectionInfo.skillDescription = "ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½";
     }
 }

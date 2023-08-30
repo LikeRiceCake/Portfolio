@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class AttackCollider : MonoBehaviour
 {
-    public int damage { get; set; }
+    // AttackCollider 관련 클래스 재정비 필요
 
-    protected abstract void OnTriggerEnter(Collider other);
+    public int m_damage { get; set; }
+
+    protected abstract void OnTriggerEnter(Collider _other);
 }

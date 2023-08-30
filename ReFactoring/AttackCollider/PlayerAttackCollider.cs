@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class PlayerAttackCollider : AttackCollider
 {
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider _other)
     {
-        if (other.transform.CompareTag("Monster"))
+        if (_other.transform.CompareTag("Monster"))
         {
-            other.transform.GetComponent<IStat>().GetStat().UnderAttack(damage);
+            _other.transform.GetComponent<IStat>().GetStat().UnderAttack(m_damage);
         }
     }
 }

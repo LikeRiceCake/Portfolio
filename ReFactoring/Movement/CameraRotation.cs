@@ -35,12 +35,12 @@ public class CameraRotation : MonoBehaviour, IInputMouseRotateObserver
         transform.LookAt(target);
     }
 
-    public void ReactNotify(_EInputType_ type, _EInputDetailType_ dType, Vector2 value)
+    public void ReactNotify(_EInputType_ _type, _EInputDetailType_ _dType, Vector2 _value)
     {
-        if (type == _EInputType_.eRotate)
+        if (_type == _EInputType_.eitRotate)
         {
-            if (dType == _EInputDetailType_.eRotate)
-                rot += value * Time.deltaTime * MOUSE_SENSITIVITY;
+            if (_dType == _EInputDetailType_.eidtRotate)
+                rot += _value * Time.deltaTime * MOUSE_SENSITIVITY;
         }
     }
 }

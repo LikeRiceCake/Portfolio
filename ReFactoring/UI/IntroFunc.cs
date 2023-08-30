@@ -8,10 +8,10 @@ public class IntroFunc : MonoBehaviour
 {
     enum _EIntroComicType_
     {
-        eFirst,
-        eSecond,
-        eThird,
-        eMax
+        eictFirst,
+        eictSecond,
+        eictThird,
+        eictMax
     }
 
     ResourceManager resourceManager;
@@ -22,12 +22,9 @@ public class IntroFunc : MonoBehaviour
 
     Sprite[] introComicSprites;
 
-    bool isIn;
-    bool isOut;
+    float m_alpha;
 
-    float alpha;
-
-    int currentComic;
+    int m_currentComic;
 
     private void Start()
     {
@@ -37,28 +34,28 @@ public class IntroFunc : MonoBehaviour
 
         introComicImage = GameObject.Find("IntroCanvas").transform.Find("Canvas").transform.Find("BG").transform.Find("Wallpaper_Image").GetComponent<Image>();
 
-        introComicSprites = new Sprite[(int)_EIntroComicType_.eMax];
+        introComicSprites = new Sprite[(int)_EIntroComicType_.eictMax];
 
-        introComicSprites[(int)_EIntroComicType_.eFirst] = resourceManager.LoadComicSprite("Sprite/Intro/IntroSprite_1");
-        introComicSprites[(int)_EIntroComicType_.eSecond] = resourceManager.LoadComicSprite("Sprite/Intro/IntroSprite_2");
-        introComicSprites[(int)_EIntroComicType_.eThird] = resourceManager.LoadComicSprite("Sprite/Intro/IntroSprite_3");
+        introComicSprites[(int)_EIntroComicType_.eictFirst] = resourceManager.LoadComicSprite("Sprite/Intro/IntroSprite_1");
+        introComicSprites[(int)_EIntroComicType_.eictSecond] = resourceManager.LoadComicSprite("Sprite/Intro/IntroSprite_2");
+        introComicSprites[(int)_EIntroComicType_.eictThird] = resourceManager.LoadComicSprite("Sprite/Intro/IntroSprite_3");
 
-        currentComic = 0;
+        m_currentComic = 0;
 
-        alpha = 1f;
+        m_alpha = 1f;
 
-        introComicImage.sprite = introComicSprites[currentComic];
-        introComicImage.color = new Color(introComicImage.color.r, introComicImage.color.g, introComicImage.color.b, alpha);
+        introComicImage.sprite = introComicSprites[m_currentComic];
+        introComicImage.color = new Color(introComicImage.color.r, introComicImage.color.g, introComicImage.color.b, m_alpha);
     }
 
     IEnumerator FadeIn()
     {
         while (true)
         {
-            alpha += Time.deltaTime;
-            introComicImage.color = new Color(introComicImage.color.r, introComicImage.color.g, introComicImage.color.b, alpha);
+            m_alpha += Time.deltaTime;
+            introComicImage.color = new Color(introComicImage.color.r, introComicImage.color.g, introComicImage.color.b, m_alpha);
 
-            if (alpha >= 1f)
+            if (m_alpha >= 1f)
                 break;
 
             yield return null;
@@ -69,19 +66,19 @@ public class IntroFunc : MonoBehaviour
     {
         while (true)
         {
-            alpha -= Time.deltaTime;
-            introComicImage.color = new Color(introComicImage.color.r, introComicImage.color.g, introComicImage.color.b, alpha);
+            m_alpha -= Time.deltaTime;
+            introComicImage.color = new Color(introComicImage.color.r, introComicImage.color.g, introComicImage.color.b, m_alpha);
 
-            if (alpha <= 0f)
+            if (m_alpha <= 0f)
             {
-                if (currentComic < (int)_EIntroComicType_.eThird)
+                if (m_currentComic < (int)_EIntroComicType_.eictThird)
                 {
-                    currentComic++;
-                    introComicImage.sprite = introComicSprites[currentComic];
+                    m_currentComic++;
+                    introComicImage.sprite = introComicSprites[m_currentComic];
                     StartCoroutine(FadeIn());
                     break;
                 }
-                else if (currentComic == (int)_EIntroComicType_.eThird)
+                else if (m_currentComic == (int)_EIntroComicType_.eictThird)
                 {
                     mapLoader.StartUnLoadMap(_EMapType_.eIntro);
                     mapLoader.StartUnLoadMap(_EMapType_.eTitle);

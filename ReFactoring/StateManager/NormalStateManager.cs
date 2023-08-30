@@ -14,36 +14,36 @@ public class NormalStateManager : StateManager
     public override void NotifyDeath()
     {
         foreach (var ob in myDieObs)
-            ob.ReactNotify(_EObjectType_.eNormal);
+            ob.ReactNotify(_EObjectType_.eotNormal);
     }
 
-    public override void AddObserver(IDieObserver ob)
+    public override void AddObserver(IDieObserver _ob)
     {
-        myDieObs.Add(ob);
+        myDieObs.Add(_ob);
     }
 
-    public override void RemoveObserver(IDieObserver ob)
+    public override void RemoveObserver(IDieObserver _ob)
     {
-        myDieObs.Remove(ob);
+        myDieObs.Remove(_ob);
     }
 
-    public override void SetActionType(_EStateType_ newState, _EObjectType_ type)
+    public override void SetActionType(_EStateType_ _type, _EObjectType_ _dtype)
     {
         if (myState != null)
         {
             switch (currentState)
             {
-                case _EStateType_.eIdle:
-                case _EStateType_.eMove:
-                case _EStateType_.eBattleIdle:
-                case _EStateType_.eChase:
+                case _EStateType_.estIdle:
+                case _EStateType_.estMove:
+                case _EStateType_.estBattleIdle:
+                case _EStateType_.estChase:
                     myState.ExitState();
                     break;
             }
             myState.StopAllCoroutines();
         }
 
-        currentState = newState;
+        currentState = _type;
 
         Component[] temp = gameObject.GetComponents<State>();
 
@@ -54,31 +54,31 @@ public class NormalStateManager : StateManager
         }
 
         // Enter Çàµ¿
-        switch (newState)
+        switch (_type)
         {
-            case _EStateType_.eIdle:
+            case _EStateType_.estIdle:
                 myState = gameObject.AddComponent<NormalIdleState>();
-                myState.DoAction(newState);
+                myState.DoAction(_type);
                 break;
-            case _EStateType_.eMove:
+            case _EStateType_.estMove:
                 myState = gameObject.AddComponent<NormalMoveState>();
-                myState.DoAction(newState);
+                myState.DoAction(_type);
                 break;
-            case _EStateType_.eChase:
+            case _EStateType_.estChase:
                 myState = gameObject.AddComponent<NormalChaseState>();
-                myState.DoAction(newState);
+                myState.DoAction(_type);
                 break;
-            case _EStateType_.eBattleIdle:
+            case _EStateType_.estBattleIdle:
                 myState = gameObject.AddComponent<NormalBattleIdleState>();
-                myState.DoAction(newState);
+                myState.DoAction(_type);
                 break;
-            case _EStateType_.eAttack:
+            case _EStateType_.estAttack:
                 myState = gameObject.AddComponent<NormalAttackState>();
-                myState.DoAction(newState);
+                myState.DoAction(_type);
                 break;
-            case _EStateType_.eDie:
+            case _EStateType_.estDie:
                 myState = gameObject.AddComponent<NormalDieState>();
-                myState.DoAction(newState);
+                myState.DoAction(_type);
                 break;
         }
     }

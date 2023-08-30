@@ -18,19 +18,19 @@ public class DieManager : MonoBehaviour, IDieObserver, IDialogueEventSubject
 
         initHelper = GameObject.Find("InitHelper").GetComponent<InitHelper>();
 
-        initHelper.needInit[(int)_EInitCallType_.eEnter_InGameScene].Add(Init_Enter_InGameScene);
+        initHelper.needInit[(int)_EInitCallType_.eictEnter_InGameScene].Add(Init_Enter_InGameScene);
     }
 
-    public void AddMyFunc(IDieSubject die)
+    public void AddMyFunc(IDieSubject _die)
     {
-        die.AddObserver(this);
+        _die.AddObserver(this);
     }
 
-    public void ReactNotify(_EObjectType_ type)
+    public void ReactNotify(_EObjectType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EObjectType_.ePlayer:
+            case _EObjectType_.eotPlayer:
                 spriteRunner.SetRunImage("Loading_Image");
                 spriteRunner.OnImage();
                 spriteRunner.RunImage();
@@ -40,9 +40,9 @@ public class DieManager : MonoBehaviour, IDieObserver, IDialogueEventSubject
                     spriteRunner.OffImage();
                 }
                 break;
-            case _EObjectType_.eNormal:
-            case _EObjectType_.eBoss:
-                Notify(_EDialogueEventType_.eMonsterDie);
+            case _EObjectType_.eotNormal:
+            case _EObjectType_.eotBoss:
+                Notify(_EDialogueEventType_.edetMonsterDie);
                 break;
         }
     }
@@ -52,20 +52,20 @@ public class DieManager : MonoBehaviour, IDieObserver, IDialogueEventSubject
         myObs = new List<IDialogueEventObserver>();
     }
 
-    public void AddObserver(IDialogueEventObserver ob)
+    public void AddObserver(IDialogueEventObserver _ob)
     {
-        myObs.Add(ob);
+        myObs.Add(_ob);
     }
 
-    public void Notify(_EDialogueEventType_ type)
+    public void Notify(_EDialogueEventType_ _type)
     {
         foreach (var ob in myObs)
-            ob.ReactNotify(type);
+            ob.ReactNotify(_type);
     }
 
-    public void RemoveObserver(IDialogueEventObserver ob)
+    public void RemoveObserver(IDialogueEventObserver _ob)
     {
-        myObs.Remove(ob);
+        myObs.Remove(_ob);
     }
 
     public void Init_Enter_InGameScene()

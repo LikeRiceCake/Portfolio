@@ -24,18 +24,18 @@ public class BossDieState : MonsterDieState
         me = GetComponent<Monster>();
     }
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
         switch (me.GetMonsterType())
         {
-            case _EMonsterType_.eGumihoH:
+            case _EMonsterType_.emtGumihoH:
                 mapLoader.StartLoadMap(_EMapType_.eMiddleBossTransformation);
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eMiddleBossRoom_A);
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstMiddleBossRoom_A);
                 break; 
-            case _EMonsterType_.eGumihoA:
+            case _EMonsterType_.emtGumihoA:
                 stateManager.NotifyDeath();
                 break;
-            case _EMonsterType_.eHeogho:
+            case _EMonsterType_.emtHeogho:
                 stateManager.NotifyDeath();
                 break;
         }

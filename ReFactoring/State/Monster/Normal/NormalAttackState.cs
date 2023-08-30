@@ -14,24 +14,24 @@ public class NormalAttackState : MonsterAttackState
     const float ATTACK_COLLIDER_INS_DIS = 1.5f;
     const float ATTACK_COLLIDER_INS_HEIGHT = 0.5f;
     const float ATTACK_COLLIDER_SPEED = 5f;
-    float attackColliderDestroyTime;
+    float attackColliderm_destroyTime;
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
 
         ResourceManager resourceManager = GameObject.Find("Manager").GetComponent<ResourceManager>();
 
         switch (GetComponent<Monster>().GetMonsterType())
         {
-            case _EMonsterType_.eWolf:
-            case _EMonsterType_.eBoar:
+            case _EMonsterType_.emtWolf:
+            case _EMonsterType_.emtBoar:
                 attackCollider = resourceManager.LoadMonsterPrefab("Prefabs/SkillObject/CloseAttack");
-                attackColliderDestroyTime = 0.1f;
+                attackColliderm_destroyTime = 0.1f;
                 break;
-            case _EMonsterType_.eBird:
+            case _EMonsterType_.emtBird:
                 attackCollider = resourceManager.LoadMonsterPrefab("Prefabs/SkillObject/LongAttack");
-                attackColliderDestroyTime = 5f;
+                attackColliderm_destroyTime = 5f;
                 break;
         }
 
@@ -54,13 +54,13 @@ public class NormalAttackState : MonsterAttackState
 
         GameObject obj = Instantiate(attackCollider, transform.position + (transform.forward * ATTACK_COLLIDER_INS_DIS) + offSet, transform.rotation);
 
-        obj.GetComponent<MonsterAttackCollider>().damage = myStat.GetDamage(_EIntStatType_.eDamage);
-        obj.GetComponent<MonsterAttackCollider>().destroyTime = attackColliderDestroyTime;
+        obj.GetComponent<MonsterAttackCollider>().m_damage = myStat.GetDamage(_EIntStatType_.eistDamage);
+        obj.GetComponent<MonsterAttackCollider>().m_destroyTime = attackColliderm_destroyTime;
         if (obj.GetComponent<ForwardMoveObject>() != null)
         {
             Transform target = null;
 
-            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
             if (cols != null)
             {
@@ -72,7 +72,7 @@ public class NormalAttackState : MonsterAttackState
             }
 
             obj.GetComponent<ForwardMoveObject>().target = target;
-            obj.GetComponent<ForwardMoveObject>().speed = ATTACK_COLLIDER_SPEED;
+            obj.GetComponent<ForwardMoveObject>().m_speed = ATTACK_COLLIDER_SPEED;
         }
     }
 
@@ -89,12 +89,12 @@ public class NormalAttackState : MonsterAttackState
         yield return new WaitUntil(() => myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
 
         myStat.SetFloatStat(
-        _EFloatStatType_.eCurrentAttackCool,
-        myStat.GetFloatStat(_EFloatStatType_.eAttackCool) + (myStat.GetFloatStat(_EFloatStatType_.eCurrentAttackCool) * -1));
+        _EFloatStatType_.efstCurrentAttackCool,
+        myStat.GetFloatStat(_EFloatStatType_.efstAttackCool) + (myStat.GetFloatStat(_EFloatStatType_.efstCurrentAttackCool) * -1));
 
         Transform target = null;
 
-        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+        Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
         if (cols != null)
         {
@@ -103,15 +103,15 @@ public class NormalAttackState : MonsterAttackState
                 if (col.CompareTag("Player"))
                 {
                     target = col.transform;
-                    if (Vector3.Distance(target.position, transform.position) <= myStat.GetFloatStat(_EFloatStatType_.eAttackRange))
-                        stateManager.SetActionType(_EStateType_.eBattleIdle, _EObjectType_.eMonster);
+                    if (Vector3.Distance(target.position, transform.position) <= myStat.GetFloatStat(_EFloatStatType_.efstAttackRange))
+                        stateManager.SetActionType(_EStateType_.estBattleIdle, _EObjectType_.eotMonster);
                     else
-                        stateManager.SetActionType(_EStateType_.eChase, _EObjectType_.eMonster);
+                        stateManager.SetActionType(_EStateType_.estChase, _EObjectType_.eotMonster);
                 }
             }
 
             if (target == null)
-                stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.eMonster);
+                stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotMonster);
         }
     }
 }

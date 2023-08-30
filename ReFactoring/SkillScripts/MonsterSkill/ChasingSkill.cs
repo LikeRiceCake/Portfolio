@@ -11,11 +11,11 @@ public class ChasingSkill : MonsterSkill
     const float SPEED = 10f;
 
     [SerializeField]
-    int damage;
+    int m_damage;
 
     void Start()
     {
-        damage = GameObject.Find("Gumiho_H(Clone)") != null ? 20 : 30;
+        m_damage = GameObject.Find("Gumiho_H(Clone)") != null ? 20 : 30;
 
         resourceManager = GameObject.Find("Manager").GetComponent<ResourceManager>();
         FireballEffect = resourceManager.LoadSkillPrefab("Prefabs/SkillObject/Fireball");

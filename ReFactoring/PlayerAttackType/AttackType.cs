@@ -35,21 +35,21 @@ public abstract class AttackType
         }
 
         if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("W_Attack_1"))
-            weapon.damage = myStat.GetDamage(_EIntStatType_.eDamage);
+            weapon.m_damage = myStat.GetDamage(_EIntStatType_.eistDamage);
         else if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("W_Attack_2"))
-            weapon.damage = myStat.GetDamage(_EIntStatType_.eDamage_Sec);
+            weapon.m_damage = myStat.GetDamage(_EIntStatType_.eistDamage_Sec);
         else if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("W_Attack_3"))
-            weapon.damage = myStat.GetDamage(_EIntStatType_.eDamage_Thi);
+            weapon.m_damage = myStat.GetDamage(_EIntStatType_.eistDamage_Thi);
         else if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("S_Attack_1"))
-            weapon.damage = myStat.GetDamage(_EIntStatType_.eDamage_For);
+            weapon.m_damage = myStat.GetDamage(_EIntStatType_.eistDamage_For);
         else if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("S_Attack_2"))
-            weapon.damage = myStat.GetDamage(_EIntStatType_.eDamage_Fif);
+            weapon.m_damage = myStat.GetDamage(_EIntStatType_.eistDamage_Fif);
         else if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("S_Attack_3"))
-            weapon.damage = myStat.GetDamage(_EIntStatType_.eDamage_Six);
+            weapon.m_damage = myStat.GetDamage(_EIntStatType_.eistDamage_Six);
 
         yield return new WaitUntil(() => myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f);
 
-        weapon.damage = 0;
+        weapon.m_damage = 0;
     }
 
     public abstract _EPlayerAttackType_ GetAttackType();

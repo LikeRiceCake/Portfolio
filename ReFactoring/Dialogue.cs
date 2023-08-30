@@ -12,9 +12,9 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
 {
     enum _ELine_
     {
-        eName,
-        eLine,
-        eMax
+        elName,
+        elLine,
+        elMax
     }
 
     List<IGameStateObserver> myGameStateObs = new List<IGameStateObserver>();
@@ -27,7 +27,7 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
 
     GameObject dialogueFrame;
 
-    Sprite[] characterIllust;
+    Sprite[] characterIllusts;
 
     Image characterImage;
 
@@ -40,9 +40,9 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
 
     Vector3[] bgGoalPos;
 
-    string[,] myLine;
+    string[,] m_myLines;
 
-    int currentLineNumber;
+    int m_currentLineNumber;
 
     const float BG_SPEED = 5f;
 
@@ -73,13 +73,13 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
         bgGoalPos[0] = new Vector3(0f, 775f, 0f);
         bgGoalPos[1] = new Vector3(0f, -225f, 0f);
 
-        characterIllust = new Sprite[(int)_ECharacterImageType_.eMax];
+        characterIllusts = new Sprite[(int)_ECharacterImageType_.eMax];
 
-        characterIllust[(int)_ECharacterImageType_.God] = resourceManager.LoadCharacterSprite("Sprite/Character/GodIllustSprite");
-        characterIllust[(int)_ECharacterImageType_.Zero] = resourceManager.LoadCharacterSprite("Sprite/Character/ZeroIllustSprite");
-        characterIllust[(int)_ECharacterImageType_.Tam] = resourceManager.LoadCharacterSprite("Sprite/Character/TamIllustSprite");
-        characterIllust[(int)_ECharacterImageType_.Gumiho] = resourceManager.LoadCharacterSprite("Sprite/Character/GumihoIllustSprite");
-        characterIllust[(int)_ECharacterImageType_.Heogho] = resourceManager.LoadCharacterSprite("Sprite/Character/HeoghoIllustSprite");
+        characterIllusts[(int)_ECharacterImageType_.God] = resourceManager.LoadCharacterSprite("Sprite/Character/GodIllustSprite");
+        characterIllusts[(int)_ECharacterImageType_.Zero] = resourceManager.LoadCharacterSprite("Sprite/Character/ZeroIllustSprite");
+        characterIllusts[(int)_ECharacterImageType_.Tam] = resourceManager.LoadCharacterSprite("Sprite/Character/TamIllustSprite");
+        characterIllusts[(int)_ECharacterImageType_.Gumiho] = resourceManager.LoadCharacterSprite("Sprite/Character/GumihoIllustSprite");
+        characterIllusts[(int)_ECharacterImageType_.Heogho] = resourceManager.LoadCharacterSprite("Sprite/Character/HeoghoIllustSprite");
     }
 
     private void Start()
@@ -89,31 +89,31 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
         dialogueEvent = GetComponent<DialogueEvent>();
     }
 
-    public void OnLine(_EDialogueEventType_ type)
+    public void OnLine(_EDialogueEventType_ _type)
     {
         if (currentBGRoutine != null)
             StopCoroutine(currentBGRoutine);
 
         currentBGRoutine = StartCoroutine(OnBG());
-        InitDialogue(type);
+        InitDialogue(_type);
     }
 
-    void InitDialogue(_EDialogueEventType_ type)
+    void InitDialogue(_EDialogueEventType_ _type)
     {
-        myLine = resourceManager.LoadCummuLine("Text/" + type.ToString() + "Lines");
+        m_myLines = resourceManager.LoadCummuLine("Text/" + _type.ToString() + "Lines");
 
-        currentLineNumber = 0;
+        m_currentLineNumber = 0;
 
-        currentEventType = type;
+        currentEventType = _type;
 
         ProceedLine();
     }
 
     bool NextLineIdx()
     {
-        currentLineNumber++;
+        m_currentLineNumber++;
 
-        if (currentLineNumber >= myLine.GetLength(0))
+        if (m_currentLineNumber >= m_myLines.GetLength(0))
             return false;
 
         return true;
@@ -121,35 +121,35 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
 
     void ProceedLine()
     {
-        switch (myLine[currentLineNumber, (int)_ELine_.eName])
+        switch (m_myLines[m_currentLineNumber, (int)_ELine_.elName])
         {
             case "Ω≈":
-                characterImage.sprite = characterIllust[(int)_ECharacterImageType_.God];
+                characterImage.sprite = characterIllusts[(int)_ECharacterImageType_.God];
                 break;
             case "¡¶∑Œ":
-                characterImage.sprite = characterIllust[(int)_ECharacterImageType_.Zero];
+                characterImage.sprite = characterIllusts[(int)_ECharacterImageType_.Zero];
                 break;
             case "≈Ω":
-                characterImage.sprite = characterIllust[(int)_ECharacterImageType_.Tam];
+                characterImage.sprite = characterIllusts[(int)_ECharacterImageType_.Tam];
                 break;
             case "±∏πÃ»£":
-                characterImage.sprite = characterIllust[(int)_ECharacterImageType_.Gumiho];
+                characterImage.sprite = characterIllusts[(int)_ECharacterImageType_.Gumiho];
                 break;
             case "»Ê»£":
-                characterImage.sprite = characterIllust[(int)_ECharacterImageType_.Heogho];
+                characterImage.sprite = characterIllusts[(int)_ECharacterImageType_.Heogho];
                 break;
             case "???":
-                characterImage.sprite = characterIllust[(int)_ECharacterImageType_.Gumiho];
+                characterImage.sprite = characterIllusts[(int)_ECharacterImageType_.Gumiho];
                 break;
         }
 
-        nameText.text = myLine[currentLineNumber, (int)_ELine_.eName];
-        lineText.text = myLine[currentLineNumber, (int)_ELine_.eLine];
+        nameText.text = m_myLines[m_currentLineNumber, (int)_ELine_.elName];
+        lineText.text = m_myLines[m_currentLineNumber, (int)_ELine_.elLine];
     }
 
     IEnumerator OnBG()
     {
-        NotifyGameState(_EGameStateType_.eisStop, true);
+        NotifyGameState(_EGameStateType_.egstIsStop, true);
 
         while (true)
         {
@@ -165,12 +165,12 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
 
         dialogueFrame.SetActive(true);
 
-        NotifyGameState(_EGameStateType_.eisLine, true);
+        NotifyGameState(_EGameStateType_.egstIsLine, true);
     }
 
     IEnumerator OffBG()
     {
-        NotifyGameState(_EGameStateType_.eisLine, false);
+        NotifyGameState(_EGameStateType_.egstIsLine, false);
 
         dialogueFrame.SetActive(false);
 
@@ -186,19 +186,19 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
             yield return null;
         }
 
-        NotifyGameState(_EGameStateType_.eisStop, false);
+        NotifyGameState(_EGameStateType_.egstIsStop, false);
 
         dialogueEvent.DoEvent(currentEventType);
     }
 
 
-    public void ReactNotify(_EInputType_ type, _EInputDetailType_ dType)
+    public void ReactNotify(_EInputType_ _type, _EInputDetailType_ _dType)
     {
-        if (type == _EInputType_.eDialogue)
+        if (_type == _EInputType_.eitDialogue)
         {
-            switch (dType)
+            switch (_dType)
             {
-                case _EInputDetailType_.eDialogue:
+                case _EInputDetailType_.eidtDialogue:
                     if(!NextLineIdx())
                     {
                         if (currentBGRoutine != null)
@@ -213,19 +213,19 @@ public class Dialogue : MonoBehaviour, IInputKeyClickObserver, IGameStateSubject
         }
     }
 
-    public void NotifyGameState(_EGameStateType_ type, bool state)
+    public void NotifyGameState(_EGameStateType_ _type, bool _state)
     {
         foreach (var ob in myGameStateObs)
-            ob.ReactNotify(type, state);
+            ob.ReactNotify(_type, _state);
     }
 
-    public void AddObserver(IGameStateObserver ob)
+    public void AddObserver(IGameStateObserver _ob)
     {
-        myGameStateObs.Add(ob);
+        myGameStateObs.Add(_ob);
     }
 
-    public void RemoveObserver(IGameStateObserver ob)
+    public void RemoveObserver(IGameStateObserver _ob)
     {
-        myGameStateObs.Remove(ob);
+        myGameStateObs.Remove(_ob);
     }
 }

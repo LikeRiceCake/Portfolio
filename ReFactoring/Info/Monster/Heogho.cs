@@ -8,7 +8,7 @@ public class Heogho : Boss
 {
     protected override void Awake()
     {
-        myType = _EMonsterType_.eHeogho;
+        myType = _EMonsterType_.emtHeogho;
 
         base.Awake();
     }
@@ -19,10 +19,11 @@ public class Heogho : Boss
 
         base.Start();
 
-        ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern_100>();
+        ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern100>();
         ((HeoghoStat)stat).myBoss = this;
     }
 
+    // ChangePattern êµ¬ë¯¸í˜¸ì—ë„ ë§Œë“¤ì–´ì„œ(Bossì—ì„œ ìƒì†) êµ¬ë¯¸í˜¸ëŠ” ë³€ì‹ (Scene ë¶ˆëŸ¬ì˜¤ëŠ”ê²ƒ) í‘í˜¸ëŠ” íŒ¨í„´ë§Œ ë³€ê²½
     public void ChangePattern(_EHeoghoPattern_ pattern)
     {
         Destroy(GetComponent<MonsterPattern>());
@@ -30,10 +31,10 @@ public class Heogho : Boss
         switch (pattern)
         {
             case _EHeoghoPattern_.e50:
-                ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern_50>();
+                ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern50>();
                 break;
             case _EHeoghoPattern_.e30:
-                ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern_30>();
+                ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern30>();
                 break;
         }
         
@@ -42,10 +43,10 @@ public class Heogho : Boss
 
     public override void InitCollectionInfo()
     {
-        collectionInfo.name = "ÈæÈ£";
+        collectionInfo.name = "ï¿½ï¿½È£";
         collectionInfo.sprite = resourceManager.LoadMonsterSprite("Sprite/Heogho");
-        collectionInfo.description = "Ã¢±Í¿¡°Ô Á¶Á¾´çÇÏ°í ÀÖ´Â °Å´ëÇÑ ÈæÈ£. º»·¡´Â ½Å¼ºÇÑ ¿µ¹°·Î½á ÀÎ±ÙÀÇ »ê¿¡ »ì°í ÀÖ¾úÀ¸³ª Ã¢±Í¿¡ ÀÇÇØ ¾ÇÇàÀ» ÀúÁö¸£°í ÀÖ´Ù.";
-        collectionInfo.numbering = (int)_EMonsterType_.eHeogho + 1;
-        collectionInfo.skillDescription = "È£±¸¿Í °°Àº ÇüÅÂÀÇ °ø°İÀ» ³¯¸°´Ù.";
+        collectionInfo.description = "Ã¢ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½È£. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ê¿¡ ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.";
+        collectionInfo.numbering = (int)_EMonsterType_.emtHeogho + 1;
+        collectionInfo.skillDescription = "È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.";
     }
 }

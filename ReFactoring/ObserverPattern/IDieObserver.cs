@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IDieObserver
 {
-    void ReactNotify(_EObjectType_ type);
+    void ReactNotify(_EObjectType_ _type);
 
-    void AddMyFunc(IDieSubject die);
+    void AddMyFunc(IDieSubject _die);
 }

@@ -9,10 +9,10 @@ public class PlayerRespawn : MonoBehaviour
 {
     enum _ERespawnPosType_
     {
-        eTutorialRoom,
-        eMiddleBossRoom,
-        eFinalBossRoom,
-        eMax
+        erptTutorialRoom,
+        erptMiddleBossRoom,
+        erptFinalBossRoom,
+        erptMax
     }
 
     GameObject player;
@@ -30,14 +30,14 @@ public class PlayerRespawn : MonoBehaviour
         characterHPUI = GameObject.Find("CharacterHP").GetComponent<CharacterHPUI>();
     }
 
-    public void SetRespawnPos(Vector3 pos)
+    public void SetRespawnPos(Vector3 _pos)
     {
-        respawnPos = pos;
+        respawnPos = _pos;
     }
 
-    public void SetPlayer(GameObject player)
+    public void SetPlayer(GameObject _player)
     {
-        this.player = player;
+        this.player = _player;
     }
 
     public bool DoRespawn()
@@ -47,8 +47,8 @@ public class PlayerRespawn : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = true;
 
         player.GetComponent<IStat>().GetStat().SetHp(
-            _EIntStatType_.eCurrentHp,
-            player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eMaxHp) - player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eCurrentHp));
+            _EIntStatType_.eistCurrentHp,
+            player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eistMaxHp) - player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eistCurrentHp));
 
         foreach (var monsterList in monsterSpawner.GetMonsters())
         {
@@ -57,19 +57,19 @@ public class PlayerRespawn : MonoBehaviour
                 if (monsterList[i] != null)
                 {
                     monsterList[i].GetComponent<IStat>().GetStat().SetHp(
-                        _EIntStatType_.eCurrentHp,
-                        monsterList[i].GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eMaxHp) - monsterList[i].GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eCurrentHp));
+                        _EIntStatType_.eistCurrentHp,
+                        monsterList[i].GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eistMaxHp) - monsterList[i].GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eistCurrentHp));
 
-                    monsterList[i].GetComponent<StateManager>().SetActionType(_EStateType_.eIdle, _EObjectType_.eMonster);
+                    monsterList[i].GetComponent<StateManager>().SetActionType(_EStateType_.estIdle, _EObjectType_.eotMonster);
                 }   
             }
         }
 
-        player.GetComponent<StateManager>().SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+        player.GetComponent<StateManager>().SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
 
-        characterHPUI.ChangeCharacterHPUI(_EHPUIType_.ePlayer,
-            player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eCurrentHp),
-            player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eMaxHp));
+        characterHPUI.ChangeCharacterHPUI(_EHPUIType_.ehutPlayer,
+            player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eistCurrentHp),
+            player.GetComponent<IStat>().GetStat().GetIntStat(_EIntStatType_.eistMaxHp));
 
         return true;
     }

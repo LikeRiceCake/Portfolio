@@ -22,10 +22,10 @@ public abstract class PlayerState : State
 
     Vector3 vecGravity = new Vector3(0, GRAVITY, 0);
 
-    float currentSpeed;
+    float m_currentSpeed;
 
-    float x;
-    float y;
+    float m_x;
+    float m_y;
 
     Vector2 cameraRot;
 
@@ -41,10 +41,10 @@ public abstract class PlayerState : State
 
         controller = GetComponent<CharacterController>();
 
-        currentSpeed = myStat.GetFloatStat(_EFloatStatType_.eSpeed);
+        m_currentSpeed = myStat.GetFloatStat(_EFloatStatType_.efstSpeed);
     }
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _sttype)
     {
         StartCoroutine(InputOption());
         StartCoroutine(InputLine());
@@ -69,7 +69,7 @@ public abstract class PlayerState : State
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
-                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eOption, _EInputDetailType_.eOption);
+                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eitOption, _EInputDetailType_.eidtOption);
 
             yield return null;
         }
@@ -79,8 +79,8 @@ public abstract class PlayerState : State
     {
         while (true)
         {
-            if (gameMgr.GetGameState(_EGameStateType_.eisLine) && Input.GetKeyDown(KeyCode.F))
-                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eDialogue, _EInputDetailType_.eDialogue);
+            if (gameMgr.GetGameState(_EGameStateType_.egstIsLine) && Input.GetKeyDown(KeyCode.F))
+                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eitDialogue, _EInputDetailType_.eidtDialogue);
 
             yield return null;
         }
@@ -93,16 +93,16 @@ public abstract class PlayerState : State
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 if (Input.GetKey(KeyCode.W))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eDown_W);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtDown_W);
                 if (Input.GetKey(KeyCode.S))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eDown_S);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtDown_S);
                 if (Input.GetKey(KeyCode.A))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eDown_A);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtDown_A);
                 if (Input.GetKey(KeyCode.D))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eDown_D);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtDown_D);
 
-                if (stateManager.currentState != _EStateType_.eMove)
-                    stateManager.SetActionType(_EStateType_.eMove, _EObjectType_.ePlayer);
+                if (stateManager.currentState != _EStateType_.estMove)
+                    stateManager.SetActionType(_EStateType_.estMove, _EObjectType_.eotPlayer);
             }
 
             yield return null;
@@ -116,17 +116,17 @@ public abstract class PlayerState : State
             if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
             {
                 if (Input.GetKeyUp(KeyCode.W))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eUp_W);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtUp_W);
                 if (Input.GetKeyUp(KeyCode.A))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eUp_A);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtUp_A);
                 if (Input.GetKeyUp(KeyCode.S))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eUp_S);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtUp_S);
                 if (Input.GetKeyUp(KeyCode.D))
-                    MovingSet(_EInputType_.eMove, _EInputDetailType_.eUp_D);
+                    MovingSet(_EInputType_.eitMove, _EInputDetailType_.eidtUp_D);
             }
 
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && stateManager.currentState != _EStateType_.eIdle)
-                stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && stateManager.currentState != _EStateType_.estIdle)
+                stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
 
             yield return null;
         }
@@ -138,13 +138,13 @@ public abstract class PlayerState : State
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (stateManager.currentState != _EStateType_.eAttack)
-                    stateManager.SetActionType(_EStateType_.eAttack, _EObjectType_.ePlayer);
+                if (stateManager.currentState != _EStateType_.estAttack)
+                    stateManager.SetActionType(_EStateType_.estAttack, _EObjectType_.eotPlayer);
 
-                SetAttack(_EInputType_.eAttack, _EInputDetailType_.eAttack_W);
+                SetAttack(_EInputType_.eitAttack, _EInputDetailType_.eidtAttack_W);
             }
             else if (Input.GetKeyDown(KeyCode.Mouse1))
-                SetAttack(_EInputType_.eAttack, _EInputDetailType_.eAttack_S);
+                SetAttack(_EInputType_.eitAttack, _EInputDetailType_.eidtAttack_S);
 
             yield return null;
         }
@@ -155,9 +155,9 @@ public abstract class PlayerState : State
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.E))
-                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eSkill, _EInputDetailType_.eUseSkill);
+                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eitSkill, _EInputDetailType_.eidtUseSkill);
             else if (Input.GetKeyDown(KeyCode.Q))
-                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eSkill, _EInputDetailType_.eChangeSkill);
+                ((PlayerStateManager)stateManager).NotifyKeyClickInput(_EInputType_.eitSkill, _EInputDetailType_.eidtChangeSkill);
 
             yield return null;
         }
@@ -168,7 +168,7 @@ public abstract class PlayerState : State
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) && GetComponent<DashCoolDown>() == null)
-                stateManager.SetActionType(_EStateType_.eDash, _EObjectType_.ePlayer);
+                stateManager.SetActionType(_EStateType_.estDash, _EObjectType_.eotPlayer);
 
             yield return null;
         }
@@ -178,13 +178,13 @@ public abstract class PlayerState : State
     {
         while (true)
         {
-            x = Input.GetAxis("Mouse X");
-            y = Input.GetAxis("Mouse Y");
+            m_x = Input.GetAxis("Mouse X");
+            m_y = Input.GetAxis("Mouse Y");
 
-            cameraRot.x = x;
-            cameraRot.y = y;
+            cameraRot.x = m_x;
+            cameraRot.y = m_y;
 
-            ((PlayerStateManager)stateManager).NotifyMouseRotate(_EInputType_.eRotate, _EInputDetailType_.eRotate, cameraRot);
+            ((PlayerStateManager)stateManager).NotifyMouseRotate(_EInputType_.eitRotate, _EInputDetailType_.eidtRotate, cameraRot);
 
             yield return null;
         }
@@ -198,26 +198,26 @@ public abstract class PlayerState : State
         playerDir = Vector3.zero;
     }
 
-    void MovingSet(_EInputType_ type, _EInputDetailType_ dType)
+    void MovingSet(_EInputType_ _type, _EInputDetailType_ _dType)
     {
-        if (type == _EInputType_.eMove)
+        if (_type == _EInputType_.eitMove)
         {
-            if (dType == _EInputDetailType_.eDown_W)
+            if (_dType == _EInputDetailType_.eidtDown_W)
                 playerDirs[0] = mainCam.transform.forward;
-            if (dType == _EInputDetailType_.eDown_S)
+            if (_dType == _EInputDetailType_.eidtDown_S)
                 playerDirs[1] = -mainCam.transform.forward;
-            if (dType == _EInputDetailType_.eDown_A)
+            if (_dType == _EInputDetailType_.eidtDown_A)
                 playerDirs[2] = -mainCam.transform.right;
-            if (dType == _EInputDetailType_.eDown_D)
+            if (_dType == _EInputDetailType_.eidtDown_D)
                 playerDirs[3] = mainCam.transform.right;
 
-            if (dType == _EInputDetailType_.eUp_W)
+            if (_dType == _EInputDetailType_.eidtUp_W)
                 playerDirs[0] = Vector3.zero;
-            if (dType == _EInputDetailType_.eUp_S)
+            if (_dType == _EInputDetailType_.eidtUp_S)
                 playerDirs[1] = Vector3.zero;
-            if (dType == _EInputDetailType_.eUp_A)
+            if (_dType == _EInputDetailType_.eidtUp_A)
                 playerDirs[2] = Vector3.zero;
-            if (dType == _EInputDetailType_.eUp_D)
+            if (_dType == _EInputDetailType_.eidtUp_D)
                 playerDirs[3] = Vector3.zero;
 
             playerRot = playerDir = playerDirs[0] + playerDirs[1] + playerDirs[2] + playerDirs[3];
@@ -230,7 +230,7 @@ public abstract class PlayerState : State
     {
         while (true)
         {
-            controller.Move(playerDir.normalized * currentSpeed * Time.deltaTime);
+            controller.Move(playerDir.normalized * m_currentSpeed * Time.deltaTime);
 
             yield return null;
         }
@@ -247,7 +247,7 @@ public abstract class PlayerState : State
         }
     }
 
-    protected virtual void SetAttack(_EInputType_ type, _EInputDetailType_ dType)
+    protected virtual void SetAttack(_EInputType_ _type, _EInputDetailType_ _dType)
     {
         return;
     }

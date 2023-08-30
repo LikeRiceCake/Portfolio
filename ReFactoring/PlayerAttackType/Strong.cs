@@ -6,11 +6,11 @@ using PublicEnums.State;
 
 public class Strong : AttackType
 {
-    public Strong(Animator myAnim, PlayerAttackCollider weapon, Stat myStat)
+    public Strong(Animator _myAnim, PlayerAttackCollider _weapon, Stat _myStat)
     {
-        base.myAnim = myAnim;
-        this.weapon = weapon;
-        this.myStat = myStat;
+        base.myAnim = _myAnim;
+        this.weapon = _weapon;
+        this.myStat = _myStat;
     }
 
     public override AttackType Attack()
@@ -22,6 +22,6 @@ public class Strong : AttackType
 
     public override _EPlayerAttackType_ GetAttackType()
     {
-        return _EPlayerAttackType_.eStrong;
+        return _EPlayerAttackType_.epatStrong;
     }
 }

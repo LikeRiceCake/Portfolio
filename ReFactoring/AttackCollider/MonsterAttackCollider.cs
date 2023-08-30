@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class MonsterAttackCollider : AttackCollider
 {
-    public float destroyTime { get; set; }
+    public float m_destroyTime { get; set; }
 
     protected virtual void Start()
     {
-        Destroy(gameObject, destroyTime);
+        Destroy(gameObject, m_destroyTime);
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider _other)
     {
-        if(other.transform.CompareTag("Player"))
+        if(_other.transform.CompareTag("Player"))
         {
-            other.transform.GetComponent<IStat>().GetStat().UnderAttack(damage);
+            _other.transform.GetComponent<IStat>().GetStat().UnderAttack(m_damage);
             Destroy(gameObject);
         }
     }

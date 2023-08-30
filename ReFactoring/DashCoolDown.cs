@@ -12,7 +12,7 @@ public class DashCoolDown : MonoBehaviour
 
     const float DASH_DELAY = 3f;
 
-    public float currentDashCool { get; set; }
+    public float m_currentDashCool { get; set; }
 
     void Start()
     {
@@ -20,16 +20,16 @@ public class DashCoolDown : MonoBehaviour
 
         dashCoolImage.gameObject.SetActive(true);
 
-        currentDashCool = DASH_DELAY;
+        m_currentDashCool = DASH_DELAY;
     }
 
     void Update()
     {
-        if (currentDashCool >= 0)
+        if (m_currentDashCool >= 0)
         {
-            currentDashCool -= Time.deltaTime;
-            dashCoolImage.fillAmount = currentDashCool / DASH_DELAY;
-            if (currentDashCool <= 0)
+            m_currentDashCool -= Time.deltaTime;
+            dashCoolImage.fillAmount = m_currentDashCool / DASH_DELAY;
+            if (m_currentDashCool <= 0)
             {
                 dashCoolImage.gameObject.SetActive(false);
                 Destroy(GetComponent<DashCoolDown>());

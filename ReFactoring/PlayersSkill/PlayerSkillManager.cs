@@ -16,14 +16,14 @@ public class PlayerSkillManager : MonoBehaviour, IInputKeyClickObserver
 
         skillList = new CircularList<PlayerSkill>();
 
-        PlayerGetSkill(_ESkillType_.eCrow);
+        AddSkill(_ESkillType_.estCrow);
 
-        ChangeSkill(_ESkillType_.eCrow);
+        ChangeSkill(_ESkillType_.estCrow);
     }
 
-    void ChangeSkill(_ESkillType_ type)
+    void ChangeSkill(_ESkillType_ _type)
     {
-        currentSkill = type;
+        currentSkill = _type;
 
         skillList.SetCurrentIndex = (int)currentSkill;
 
@@ -37,36 +37,36 @@ public class PlayerSkillManager : MonoBehaviour, IInputKeyClickObserver
 
     void UseSkill()
     {
-        skillList.GetCurrent.SkillFunction();
+        skillList.GetCurrent.ActivateSkillFunction();
     }
 
-    public void PlayerGetSkill(_ESkillType_ type)
+    public void AddSkill(_ESkillType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
-            case _ESkillType_.eCrow:
+            case _ESkillType_.estCrow:
                 skillList.Add(gameObject.AddComponent<CrowSkill>());
                 break;
-            case _ESkillType_.eGumiho:
+            case _ESkillType_.estGumiho:
                 skillList.Add(gameObject.AddComponent<GumihoSkill>());
                 break;
-            case _ESkillType_.eHeogho:
+            case _ESkillType_.estHeogho:
                 break;
         }
         
     }
 
-    public void ReactNotify(_EInputType_ type, _EInputDetailType_ dType)
+    public void ReactNotify(_EInputType_ _type, _EInputDetailType_ _dType)
     {
-        if(type == _EInputType_.eSkill)
+        if(_type == _EInputType_.eitSkill)
         {
-            switch (dType)
+            switch (_dType)
             {
-                case _EInputDetailType_.eChangeSkill:
+                case _EInputDetailType_.eidtChangeSkill:
                     skillList.Next();
                     SkillEnter();
                     break;
-                case _EInputDetailType_.eUseSkill:
+                case _EInputDetailType_.eidtUseSkill:
                     UseSkill();
                     break;
             }

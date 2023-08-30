@@ -11,11 +11,11 @@ public class GumihoStat : MonsterStat
     protected const int GUMIHO_DAMAGE = 10;
     protected const float GUMIHO_SPEED = 4f;
     protected const float GUMIHO_SIGHT = 999f;
-    protected const float GUMIHO_ATTACKRANGE = 3.4f;
-    protected const float GUMIHO_ATTACKCOOL = 5f;
+    protected const float GUMIHO_ATTACK_RANGE = 3.4f;
+    protected const float GUMIHO_ATTACK_COOL = 5f;
 
-    public GumihoStat(StateManager stateManager) : base(stateManager)
+    public GumihoStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 }

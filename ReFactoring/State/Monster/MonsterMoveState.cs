@@ -5,9 +5,9 @@ using UnityEngine;
 
 public abstract class MonsterMoveState : MonsterState
 {
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
         myAnim.SetTrigger("Move");
         StartCoroutine(SearchAround());
         StartCoroutine(MoveAround());

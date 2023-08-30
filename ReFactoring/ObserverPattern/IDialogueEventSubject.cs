@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IDialogueEventSubject
 {
-    void Notify(_EDialogueEventType_ type);
-    void AddObserver(IDialogueEventObserver ob);
-    void RemoveObserver(IDialogueEventObserver ob);
+    void Notify(_EDialogueEventType_ _type);
+    void AddObserver(IDialogueEventObserver _ob);
+    void RemoveObserver(IDialogueEventObserver _ob);
 }

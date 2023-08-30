@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class HeughoSkill : PlayerSkill
 {
-    public override void SkillFunction()
+    public override void ActivateSkillFunction()
     {
-        // °¢°¢ ½ºÅ³ ±â´É.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½.
     }
 
     public override void ChangeImage()

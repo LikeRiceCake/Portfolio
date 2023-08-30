@@ -8,12 +8,12 @@ public class BoarStat : MonsterStat
     const int BOAR_DAMAGE = 20;
     const float BOAR_SPEED = 1f;
     const float BOAR_SIGHT = 5f;
-    const float BOAR_ATTACKRANGE = 1.5f;
-    const float BOAR_ATTACKCOOL = 2f;
+    const float BOAR_ATTACK_RANGE = 1.5f;
+    const float BOAR_ATTACK_COOL = 2f;
 
-    public BoarStat(StateManager stateManager) : base(stateManager)
+    public BoarStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 
     protected override void InitStat()
@@ -23,8 +23,8 @@ public class BoarStat : MonsterStat
         myStat.damage = BOAR_DAMAGE;
         myStat.speed = BOAR_SPEED;
         myStat.sight = BOAR_SIGHT;
-        myStat.attackRange = BOAR_ATTACKRANGE;
-        myStat.attackCool = BOAR_ATTACKCOOL;
+        myStat.attackRange = BOAR_ATTACK_RANGE;
+        myStat.attackCool = BOAR_ATTACK_COOL;
         myStat.currentAttackCool = 0f;
     }
 }

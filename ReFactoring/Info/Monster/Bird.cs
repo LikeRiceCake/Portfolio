@@ -10,7 +10,7 @@ public class Bird : Normal
 
     protected override void Awake()
     {
-        myType = _EMonsterType_.eBird;
+        myType = _EMonsterType_.emtBird;
 
         base.Awake();
     }
@@ -21,19 +21,14 @@ public class Bird : Normal
 
         base.Start();
 
-        //myClips = new AudioClip[(int)_ENormalSoundType_.eMax];
-
-        //myClips[(int)_ENormalSoundType_.eIdle] = resourceManager.LoadAudioClip("Sounds/SFX/Normal/Bird Idle");
-        //myClips[(int)_ENormalSoundType_.eAttack] = resourceManager.LoadAudioClip("Sounds/SFX/Normal/Bird At");
-        //attackCollider = resourceManager.LoadSkillPrefab("Prefabs/Colliders/LongAttack");
     }
 
     public override void InitCollectionInfo()
     {
-        collectionInfo.name = "»õ";
+        collectionInfo.name = "ï¿½ï¿½";
         collectionInfo.sprite = resourceManager.LoadMonsterSprite("Sprite/Bird");
-        collectionInfo.description = "¿ø°Å¸®¿¡¼­ °ø°ÝÇÏ´Â ¿ä±«ÀÌ´Ù.";
-        collectionInfo.numbering = (int)_EMonsterType_.eBird + 1;
-        collectionInfo.skillDescription = "½ºÅ³ ¾øÀ½";
+        collectionInfo.description = "ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ä±«ï¿½Ì´ï¿½.";
+        collectionInfo.numbering = (int)_EMonsterType_.emtBird + 1;
+        collectionInfo.skillDescription = "ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½";
     }
 }

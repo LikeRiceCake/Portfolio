@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 {
-    [SerializeField]
-    InitHelperChannelSO myChannel;
-
     Dialogue dialogue;
 
     MonsterSpawner monsterSpawner;
@@ -54,25 +51,25 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
         FindObjectOfType<DieManager>().GetComponent<IDialogueEventSubject>().AddObserver(this);
     }
 
-    public void ReactNotify(_EDialogueEventType_ type)
+    public void ReactNotify(_EDialogueEventType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EDialogueEventType_.eTutorial:
-            case _EDialogueEventType_.eBeforeSecondRoom:
-            case _EDialogueEventType_.eEndThirdRoomBattle:
-            case _EDialogueEventType_.eFrontNotBrokenWall:
-            case _EDialogueEventType_.eBeforeMiddleBossRoom:
-            case _EDialogueEventType_.eEnterMiddleBossRoom:
-            case _EDialogueEventType_.eFrontCanBrokenWall:
-            case _EDialogueEventType_.eEndBrakeWall:
-            case _EDialogueEventType_.eFrontAnotherWall:
-            case _EDialogueEventType_.eEndShotWall:
-            case _EDialogueEventType_.ePondCrystal:
-            case _EDialogueEventType_.eBeforeFinalBossRoom:
-                dialogue.OnLine(type);
+            case _EDialogueEventType_.edetTutorial:
+            case _EDialogueEventType_.edetBeforeSecondRoom:
+            case _EDialogueEventType_.edetEndThirdRoomBattle:
+            case _EDialogueEventType_.edetFrontNotBrokenWall:
+            case _EDialogueEventType_.edetBeforeMiddleBossRoom:
+            case _EDialogueEventType_.edetEnterMiddleBossRoom:
+            case _EDialogueEventType_.edetFrontCanBrokenWall:
+            case _EDialogueEventType_.edetEndBrakeWall:
+            case _EDialogueEventType_.edetFrontAnotherWall:
+            case _EDialogueEventType_.edetEndShotWall:
+            case _EDialogueEventType_.edetPondCrystal:
+            case _EDialogueEventType_.edetBeforeFinalBossRoom:
+                dialogue.OnLine(_type);
                 break;
-            case _EDialogueEventType_.eMonsterDie:
+            case _EDialogueEventType_.edetMonsterDie:
                 huntCnt++;
                 break;
         }
@@ -99,7 +96,7 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
         AddMyFunc();
 
-        initHelper.needInit[(int)_EInitCallType_.eEnter_MiddleBossRoom].Add(Init_Enter_MiddleBossRoom);
+        initHelper.needInit[(int)_EInitCallType_.eictEnter_MiddleBossRoom].Add(Init_Enter_MiddleBossRoom);
     }
 
     void StartDialogue()
@@ -107,16 +104,16 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
         dialogue.OnLine(_EDialogueEventType_.eStart);
     }
 
-    public void DoEvent(_EDialogueEventType_ type)
+    public void DoEvent(_EDialogueEventType_ _type)
     {
-        StartCoroutine(ActivateEvent(type));
+        StartCoroutine(ActivateEvent(_type));
     }
 
-    IEnumerator ActivateEvent(_EDialogueEventType_ type)
+    IEnumerator ActivateEvent(_EDialogueEventType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EDialogueEventType_.eTutorial:
+            case _EDialogueEventType_.edetTutorial:
                 float moveTime = 0f;
 
                 while (true)
@@ -129,9 +126,9 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                dialogue.OnLine(_EDialogueEventType_.eTutorialAttack);
+                dialogue.OnLine(_EDialogueEventType_.edetTutorialAttack);
                 break;
-            case _EDialogueEventType_.eTutorialAttack:
+            case _EDialogueEventType_.edetTutorialAttack:
                 int attackCnt = 0;
 
                 while (true)
@@ -144,9 +141,9 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                dialogue.OnLine(_EDialogueEventType_.eTutorialSkill);
+                dialogue.OnLine(_EDialogueEventType_.edetTutorialSkill);
                 break;
-            case _EDialogueEventType_.eTutorialSkill:
+            case _EDialogueEventType_.edetTutorialSkill:
                 int skillCnt = 0;
 
                 while (true)
@@ -159,9 +156,9 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                dialogue.OnLine(_EDialogueEventType_.eTutorialDash);
+                dialogue.OnLine(_EDialogueEventType_.edetTutorialDash);
                 break;
-            case _EDialogueEventType_.eTutorialDash:
+            case _EDialogueEventType_.edetTutorialDash:
                 int dashCnt = 0;
 
                 while (true)
@@ -174,11 +171,11 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                dialogue.OnLine(_EDialogueEventType_.eTutorialEnd);
+                dialogue.OnLine(_EDialogueEventType_.edetTutorialEnd);
                 break;
-            case _EDialogueEventType_.eBeforeSecondRoom:
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eSecondRoom);
-                monsterSpawner.SpawnMonsters(_ESpawnStageType_.eSecondRoom);
+            case _EDialogueEventType_.edetBeforeSecondRoom:
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstSecondRoom);
+                monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstSecondRoom);
                 huntCnt = 0;
 
                 while (true)
@@ -188,13 +185,13 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                dialogue.OnLine(_EDialogueEventType_.eEndSecondRoomBattle);
+                dialogue.OnLine(_EDialogueEventType_.edetEndSecondRoomBattle);
                 break;
-            case _EDialogueEventType_.eEndSecondRoomBattle:
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eSecondToThirdWay);
-                monsterSpawner.SpawnMonsters(_ESpawnStageType_.eSecondToThirdWay);
+            case _EDialogueEventType_.edetEndSecondRoomBattle:
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstSecondToThirdWay);
+                monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstSecondToThirdWay);
 
-                objectOpener.OpenWall(_EOpenableWall_.eSecondRoomToThirdRoomWall);
+                objectOpener.OpenWall(_EOpenableWall_.eowSecondRoomToThirdRoomWall);
                 
                 huntCnt = 0;
 
@@ -205,13 +202,13 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                DoEvent(_EDialogueEventType_.eEndSecondThirdRoomBattle);
+                DoEvent(_EDialogueEventType_.edetEndSecondThirdRoomBattle);
                 break;
-            case _EDialogueEventType_.eEndSecondThirdRoomBattle:
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eThirdRoom);
-                monsterSpawner.SpawnMonsters(_ESpawnStageType_.eThirdRoom);
+            case _EDialogueEventType_.edetEndSecondThirdRoomBattle:
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstThirdRoom);
+                monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstThirdRoom);
 
-                objectOpener.OpenWall(_EOpenableWall_.eThirdRoom);
+                objectOpener.OpenWall(_EOpenableWall_.eowThirdRoom);
 
                 huntCnt = 0;
 
@@ -222,16 +219,16 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                dialogue.OnLine(_EDialogueEventType_.eEndThirdRoomBattle);
+                dialogue.OnLine(_EDialogueEventType_.edetEndThirdRoomBattle);
                 break;
-            case _EDialogueEventType_.eEndThirdRoomBattle:
-                objectOpener.OpenWall(_EOpenableWall_.eThirdRoomToFourthRoom);
+            case _EDialogueEventType_.edetEndThirdRoomBattle:
+                objectOpener.OpenWall(_EOpenableWall_.eowThirdRoomToFourthRoom);
                 break;
-            case _EDialogueEventType_.eFrontNotBrokenWall:
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eThirdToMiddleBoss);
-                monsterSpawner.SpawnMonsters(_ESpawnStageType_.eThirdToMiddleBoss);
+            case _EDialogueEventType_.edetFrontNotBrokenWall:
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstThirdToMiddleBoss);
+                monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstThirdToMiddleBoss);
 
-                objectOpener.OpenWall(_EOpenableWall_.eThirdRoomToMiddleBossRoom);
+                objectOpener.OpenWall(_EOpenableWall_.eowThirdRoomToMiddleBossRoom);
 
                 huntCnt = 0;
 
@@ -242,11 +239,11 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                objectOpener.OpenWall(_EOpenableWall_.eMiddleBossRoom);
+                objectOpener.OpenWall(_EOpenableWall_.eowMiddleBossRoom);
                 break;
-            case _EDialogueEventType_.eEnterMiddleBossRoom:
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eMiddleBossRoom_H);
-                monsterSpawner.SpawnMonsters(_ESpawnStageType_.eMiddleBossRoom_H);
+            case _EDialogueEventType_.edetEnterMiddleBossRoom:
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstMiddleBossRoom_H);
+                monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstMiddleBossRoom_H);
 
                 huntCnt = 0;
 
@@ -257,12 +254,12 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eMiddleBossRoom_Idle);
-                monsterSpawner.SpawnMonsters(_ESpawnStageType_.eMiddleBossRoom_Idle);
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstMiddleBossRoom_Idle);
+                monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstMiddleBossRoom_Idle);
 
-                dialogue.OnLine(_EDialogueEventType_.eEndMiddleBossRoomBattle);
+                dialogue.OnLine(_EDialogueEventType_.edetEndMiddleBossRoomBattle);
                 break;
-            case _EDialogueEventType_.eEndMiddleBossRoomBattle:
+            case _EDialogueEventType_.edetEndMiddleBossRoomBattle:
                 float getSkillTime = 0f;
 
                 while (true)
@@ -274,18 +271,18 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                playerSkillManager.PlayerGetSkill(_ESkillType_.eGumiho);
-                objectOpener.OepnTrigger(_EOpenableTrigger_.eFrontCanBrokenWall);
-                dialogue.OnLine(_EDialogueEventType_.eGetGumihoSkill);
+                playerSkillManager.AddSkill(_ESkillType_.estGumiho);
+                objectOpener.OepnTrigger(_EOpenableTrigger_.eotFrontCanBrokenWall);
+                dialogue.OnLine(_EDialogueEventType_.edetGetGumihoSkill);
                 break;
-            case _EDialogueEventType_.ePondCrystal:
-                objectOpener.OpenWall(_EOpenableWall_.eFinalBossRoom);
+            case _EDialogueEventType_.edetPondCrystal:
+                objectOpener.OpenWall(_EOpenableWall_.eowFinalBossRoom);
                 break;
-            case _EDialogueEventType_.eBeforeFinalBossRoom:
+            case _EDialogueEventType_.edetBeforeFinalBossRoom:
                 mapLoader.StartLoadMap(_EMapType_.eFinalBossAppear);
-                monsterSpawner.CreateMonsters(_ESpawnStageType_.eFinalBossRoom);
+                monsterSpawner.CreateMonsters(_ESpawnStageType_.esstFinalBossRoom);
                 break;
-            case _EDialogueEventType_.eEndInstantiateFinalBoss:
+            case _EDialogueEventType_.edetEndInstantiateFinalBoss:
                 huntCnt = 0;
 
                 while (true)

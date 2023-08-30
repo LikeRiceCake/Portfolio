@@ -8,9 +8,9 @@ public class NormalMoveState : MonsterMoveState
 {
     const float CHANGE_MOVEMENT = 1f;
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
         Invoke("ChangeMovement", CHANGE_MOVEMENT);
     }
 
@@ -27,7 +27,7 @@ public class NormalMoveState : MonsterMoveState
 
         while (true)
         {
-            transform.position += transform.forward * myStat.GetFloatStat(_EFloatStatType_.eSpeed) * Time.deltaTime;
+            transform.position += transform.forward * myStat.GetFloatStat(_EFloatStatType_.efstSpeed) * Time.deltaTime;
 
             yield return null;
         }
@@ -37,14 +37,14 @@ public class NormalMoveState : MonsterMoveState
     {
         while (true)
         {
-            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.eSight));
+            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
             if (cols != null)
             {
                 foreach (var col in cols)
                 {
                     if (col.CompareTag("Player"))
-                        stateManager.SetActionType(_EStateType_.eChase, _EObjectType_.eMonster);
+                        stateManager.SetActionType(_EStateType_.estChase, _EObjectType_.eotMonster);
                 }
             }
 
@@ -54,6 +54,6 @@ public class NormalMoveState : MonsterMoveState
 
     void ChangeMovement()
     {
-        stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.eMonster);
+        stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotMonster);
     }
 }

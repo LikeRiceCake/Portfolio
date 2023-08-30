@@ -12,54 +12,54 @@ public class PlayerContact : MonoBehaviour, IDialogueEventSubject
         
     }
 
-    public void AddObserver(IDialogueEventObserver ob)
+    public void AddObserver(IDialogueEventObserver _ob)
     {
-        myObs.Add(ob);
+        myObs.Add(_ob);
     }
 
-    public void Notify(_EDialogueEventType_ type)
+    public void Notify(_EDialogueEventType_ _type)
     {
         foreach (var ob in myObs)
-            ob.ReactNotify(type);
+            ob.ReactNotify(_type);
     }
 
-    public void RemoveObserver(IDialogueEventObserver ob)
+    public void RemoveObserver(IDialogueEventObserver _ob)
     {
-        myObs.Remove(ob);
+        myObs.Remove(_ob);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider _other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (_other.transform.CompareTag("Player"))
         {
             switch (gameObject.tag)
             {
                 case "Tutorial":
-                    Notify(_EDialogueEventType_.eTutorial);
+                    Notify(_EDialogueEventType_.edetTutorial);
                     break;
                 case "BeforeSecondRoom":
-                    Notify(_EDialogueEventType_.eBeforeSecondRoom);
+                    Notify(_EDialogueEventType_.edetBeforeSecondRoom);
                     break;
                 case "FrontNotBrokenWall":
-                    Notify(_EDialogueEventType_.eFrontNotBrokenWall);
+                    Notify(_EDialogueEventType_.edetFrontNotBrokenWall);
                     break;
                 case "BeforeMiddleBossRoom":
-                    Notify(_EDialogueEventType_.eBeforeMiddleBossRoom);
+                    Notify(_EDialogueEventType_.edetBeforeMiddleBossRoom);
                     break;
                 case "EnterMiddleBossRoom":
-                    Notify(_EDialogueEventType_.eEnterMiddleBossRoom);
+                    Notify(_EDialogueEventType_.edetEnterMiddleBossRoom);
                     break;
                 case "BeforeFinalBossRoom":
-                    Notify(_EDialogueEventType_.eBeforeFinalBossRoom);
+                    Notify(_EDialogueEventType_.edetBeforeFinalBossRoom);
                     break;
                 case "FrontCanBrokenWall":
-                    Notify(_EDialogueEventType_.eFrontCanBrokenWall);
+                    Notify(_EDialogueEventType_.edetFrontCanBrokenWall);
                     break;
                 case "FrontAnotherWall":
-                    Notify(_EDialogueEventType_.eFrontAnotherWall);
+                    Notify(_EDialogueEventType_.edetFrontAnotherWall);
                     break;
                 case "PondCrystal":
-                    Notify(_EDialogueEventType_.ePondCrystal);
+                    Notify(_EDialogueEventType_.edetPondCrystal);
                     break;
             }
             gameObject.SetActive(false);

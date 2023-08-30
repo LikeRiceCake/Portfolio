@@ -20,31 +20,31 @@ public class PlayerAttackState : PlayerState
         weapon = GetComponentInChildren<PlayerAttackCollider>();
     }
 
-    public override void DoAction(_EStateType_ state)
+    public override void DoAction(_EStateType_ _type)
     {
-        base.DoAction(state);
+        base.DoAction(_type);
 
         StartCoroutine(InputAttack());
         StartCoroutine(InputDash());
     }
 
-    protected override void SetAttack(_EInputType_ type, _EInputDetailType_ dType)
+    protected override void SetAttack(_EInputType_ _type, _EInputDetailType_ _dType)
     {
-        if (type == _EInputType_.eAttack)
+        if (_type == _EInputType_.eitAttack)
         {
-            switch (dType)
+            switch (_dType)
             {
-                case _EInputDetailType_.eAttack_W:
+                case _EInputDetailType_.eidtAttack_W:
                     inputQueue.Enqueue(new Weak(myAnim, weapon, myStat));
                     break;
-                case _EInputDetailType_.eAttack_S:
+                case _EInputDetailType_.eidtAttack_S:
                     inputQueue.Enqueue(new Strong(myAnim, weapon, myStat));
                     break;
             }
 
             if (excuteStack.Count == 0)
             {
-                if (inputQueue.Peek().GetAttackType() == _EPlayerAttackType_.eWeak)
+                if (inputQueue.Peek().GetAttackType() == _EPlayerAttackType_.epatWeak)
                 {
                     excuteStack.Push(inputQueue.Dequeue());
                     excuteStack.Peek().Attack();
@@ -65,16 +65,16 @@ public class PlayerAttackState : PlayerState
 
             if (inputQueue.Count != 0)
             {
-                if (inputQueue.Peek().GetAttackType() == _EPlayerAttackType_.eWeak)
+                if (inputQueue.Peek().GetAttackType() == _EPlayerAttackType_.epatWeak)
                 {
                     if (excuteStack.Count() >= 3
-                        || excuteStack.Peek().GetAttackType() == _EPlayerAttackType_.eStrong)
-                        stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+                        || excuteStack.Peek().GetAttackType() == _EPlayerAttackType_.epatStrong)
+                        stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
                 }
-                else if (inputQueue.Peek().GetAttackType() == _EPlayerAttackType_.eStrong)
+                else if (inputQueue.Peek().GetAttackType() == _EPlayerAttackType_.epatStrong)
                 {
-                    if (excuteStack.Peek().GetAttackType() == _EPlayerAttackType_.eStrong)
-                        stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+                    if (excuteStack.Peek().GetAttackType() == _EPlayerAttackType_.epatStrong)
+                        stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
                 }
 
                 excuteStack.Push(inputQueue.Dequeue());
@@ -96,7 +96,7 @@ public class PlayerAttackState : PlayerState
             }
                 
         }
-        stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+        stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
     }
 
     public override void ExitState()

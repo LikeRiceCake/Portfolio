@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour, IInputKeyClickObserver, IGameStateObse
 
     InitHelper initHelper;
 
-    bool isStop;
-    bool isLine;
-    bool isOption;
+    bool m_isStop;
+    bool m_isLine;
+    bool m_isOption;
 
     void Start()
     {
@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour, IInputKeyClickObserver, IGameStateObse
 
         GameObject.Find("Manager").GetComponent<IGameStateSubject>().AddObserver(this);
 
-        initHelper.needInit[(int)_EInitCallType_.eEnter_InGameScene].Add(Init_Enter_InGameScene);
+        initHelper.needInit[(int)_EInitCallType_.eictEnter_InGameScene].Add(Init_Enter_InGameScene);
 
         optionFrame = GameObject.Find("ManageCanvas").transform.Find("Canvas").transform.Find("OptionWallpaper_Image").gameObject;
 
-        isStop = isLine = isOption = false;
+        m_isStop = m_isLine = m_isOption = false;
     }
 
     bool SwitchOptionFrame()
@@ -40,36 +40,36 @@ public class GameManager : MonoBehaviour, IInputKeyClickObserver, IGameStateObse
 
     public void ControlOption()
     {
-        SetGameState(_EGameStateType_.eisOption, SwitchOptionFrame());
+        SetGameState(_EGameStateType_.egstIsOption, SwitchOptionFrame());
     }
 
-    public void SetGameState(_EGameStateType_ type, bool state)
+    public void SetGameState(_EGameStateType_ type, bool _state)
     {
         switch (type)
         {
-            case _EGameStateType_.eisStop:
-                isStop = state;
+            case _EGameStateType_.egstIsStop:
+                m_isStop = _state;
                 break;
-            case _EGameStateType_.eisLine:
-                isLine = state;
+            case _EGameStateType_.egstIsLine:
+                m_isLine = _state;
                 break;
-            case _EGameStateType_.eisOption:
-                isOption = state;
+            case _EGameStateType_.egstIsOption:
+                m_isOption = _state;
                 break;
         }
-        GameObject.Find("Player").GetComponent<PlayerStateManager>().SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+        GameObject.Find("Player").GetComponent<PlayerStateManager>().SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
     }
 
-    public bool GetGameState(_EGameStateType_ type)
+    public bool GetGameState(_EGameStateType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
-            case _EGameStateType_.eisStop:
-                return isStop;
-            case _EGameStateType_.eisLine:
-                return isLine;
-            case _EGameStateType_.eisOption:
-                return isOption;
+            case _EGameStateType_.egstIsStop:
+                return m_isStop;
+            case _EGameStateType_.egstIsLine:
+                return m_isLine;
+            case _EGameStateType_.egstIsOption:
+                return m_isOption;
         }
 
         return false;
@@ -77,28 +77,28 @@ public class GameManager : MonoBehaviour, IInputKeyClickObserver, IGameStateObse
 
     public bool CheckMoveable()
     {
-        if (isStop || isOption || isLine)
+        if (m_isStop || m_isOption || m_isLine)
             return false;
 
         return true;
     }
 
-    public void ReactNotify(_EInputType_ type, _EInputDetailType_ dType)
+    public void ReactNotify(_EInputType_ _type, _EInputDetailType_ _dType)
     {
-        if(type == _EInputType_.eOption)
+        if(_type == _EInputType_.eitOption)
         {
-            switch (dType)
+            switch (_dType)
             {
-                case _EInputDetailType_.eOption:
-                    SetGameState(_EGameStateType_.eisOption, SwitchOptionFrame());
+                case _EInputDetailType_.eidtOption:
+                    SetGameState(_EGameStateType_.egstIsOption, SwitchOptionFrame());
                     break;
             }
         }
     }
 
-    public void ReactNotify(_EGameStateType_ type, bool state)
+    public void ReactNotify(_EGameStateType_ _type, bool _state)
     {
-        SetGameState(type, state);
+        SetGameState(_type, _state);
     }
 
     public void Init_Enter_InGameScene()

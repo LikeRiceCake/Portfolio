@@ -11,17 +11,17 @@ public class UISpriteAnimation : MonoBehaviour
     public float m_Speed = .02f;
 
     private int m_IndexSprite;
-    bool isDone;
+    bool m_isDone;
 
     public void SpriteRun()
     {
-        isDone = false;
+        m_isDone = false;
         StartCoroutine(Func_PlayAnimUI());
     }
 
     public void SpriteStop()
     {
-        isDone = true;
+        m_isDone = true;
     }
 
     public void SpriteOn()
@@ -45,7 +45,7 @@ public class UISpriteAnimation : MonoBehaviour
             }
             m_Image.sprite = m_SpriteArray[m_IndexSprite];
             m_IndexSprite += 1;
-            if (isDone)
+            if (m_isDone)
                 break;
         }
     }

@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class GumihoHStat : GumihoStat
 {
-    public GumihoHStat(StateManager stateManager) : base(stateManager)
+    public GumihoHStat(StateManager _stateManager) : base(_stateManager)
     {
-        base.stateManager = stateManager;
+        base.stateManager = _stateManager;
     }
 
-    public override void UnderAttack(int damage)
+    public override void UnderAttack(int _damage)
     {
-        if (stateManager.currentState != _EStateType_.eDie)
+        if (stateManager.currentState != _EStateType_.estDie)
         {
-            myStat.currentHp -= damage;
+            myStat.currentHp -= _damage;
 
             if (myStat.currentHp <= GUMIHO_A_MAX_HP)
-                stateManager.SetActionType(_EStateType_.eDie, _EObjectType_.eMonster);
+                stateManager.SetActionType(_EStateType_.estDie, _EObjectType_.eotMonster);
         }
     }
 
@@ -29,8 +29,8 @@ public class GumihoHStat : GumihoStat
         myStat.damage = GUMIHO_DAMAGE;
         myStat.speed = GUMIHO_SPEED;
         myStat.sight = GUMIHO_SIGHT;
-        myStat.attackRange = GUMIHO_ATTACKRANGE;
-        myStat.attackCool = GUMIHO_ATTACKCOOL;
-        myStat.currentAttackCool = GUMIHO_ATTACKCOOL;
+        myStat.attackRange = GUMIHO_ATTACK_RANGE;
+        myStat.attackCool = GUMIHO_ATTACK_COOL;
+        myStat.currentAttackCool = GUMIHO_ATTACK_COOL;
     }
 }

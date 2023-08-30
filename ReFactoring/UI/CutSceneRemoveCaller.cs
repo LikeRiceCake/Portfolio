@@ -22,11 +22,11 @@ public class CutSceneRemoveCaller : MonoBehaviour
         monsterSpawner = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
 
         if (SceneManager.GetActiveScene().name == _EMapType_.eMiddleBossTransformation.ToString())
-            monsterSpawner.SpawnMonsters(_ESpawnStageType_.eMiddleBossRoom_A);
+            monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstMiddleBossRoom_A);
         else if(SceneManager.GetActiveScene().name == _EMapType_.eFinalBossAppear.ToString())
         {
-            monsterSpawner.SpawnMonsters(_ESpawnStageType_.eFinalBossRoom);
-            dialogue.OnLine(_EDialogueEventType_.eEndInstantiateFinalBoss);
+            monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstFinalBossRoom);
+            dialogue.OnLine(_EDialogueEventType_.edetEndInstantiateFinalBoss);
         }
 
         mapLoader.StartUnLoadMap();

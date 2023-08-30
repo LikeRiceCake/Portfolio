@@ -37,29 +37,29 @@ public class MapLoader : MonoBehaviour, IGameStateSubject
         StartLoadMap(_EMapType_.eTitle);
     }
 
-    public void StartLoadMap(_EMapType_ type)
+    public void StartLoadMap(_EMapType_ _type)
     {
         spriteRunner.SetRunImage("Loading_Image");
         spriteRunner.OnImage();
         spriteRunner.RunImage();
 
-        StartCoroutine(LoadMap(type));
+        StartCoroutine(LoadMap(_type));
     }
 
-    IEnumerator LoadMap(_EMapType_ type)
+    IEnumerator LoadMap(_EMapType_ _type)
     {
-        switch (type)
+        switch (_type)
         {
             case _EMapType_.eMiddleBossTransformation:
             case _EMapType_.eFinalBossAppear:
-                NotifyGameState(_EGameStateType_.eisStop, true);
+                NotifyGameState(_EGameStateType_.egstIsStop, true);
                 cutSceneUI.OffUIs();
                 break;
         }
 
         yield return new WaitForSeconds(LOAD_FORCE_TIME);
 
-        AsyncOperation LoadHelper = SceneManager.LoadSceneAsync(type.ToString(), LoadSceneMode.Additive);
+        AsyncOperation LoadHelper = SceneManager.LoadSceneAsync(_type.ToString(), LoadSceneMode.Additive);
 
         while (!LoadHelper.isDone)
         {
@@ -74,12 +74,12 @@ public class MapLoader : MonoBehaviour, IGameStateSubject
             yield return null;
         }
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(type.ToString()));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(_type.ToString()));
 
-        switch (type)
+        switch (_type)
         {
             case _EMapType_.eInGame:
-                initHelper.CallInit(_EInitCallType_.eEnter_InGameScene);
+                initHelper.CallInit(_EInitCallType_.eictEnter_InGameScene);
                 break;
         }
     }
@@ -123,7 +123,7 @@ public class MapLoader : MonoBehaviour, IGameStateSubject
             }
         }
 
-        NotifyGameState(_EGameStateType_.eisStop, false);
+        NotifyGameState(_EGameStateType_.egstIsStop, false);
         cutSceneUI.OnUIs();
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("eInGame"));

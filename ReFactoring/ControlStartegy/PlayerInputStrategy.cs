@@ -18,6 +18,6 @@ public class PlayerInputStrategy : ControlStrategy
 
     public override void ControlAction()
     {
-        stateManager.SetActionType(_EStateType_.eIdle, _EObjectType_.ePlayer);
+        stateManager.SetActionType(_EStateType_.estIdle, _EObjectType_.eotPlayer);
     }
 }
