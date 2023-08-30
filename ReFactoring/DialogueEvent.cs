@@ -279,7 +279,7 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
                 objectOpener.OpenWall(_EOpenableWall_.eowFinalBossRoom);
                 break;
             case _EDialogueEventType_.edetBeforeFinalBossRoom:
-                mapLoader.StartLoadMap(_EMapType_.emtFinalBossAppear);
+                mapLoader.StartLoadMap(_EMapType_.eFinalBossAppear);
                 monsterSpawner.CreateMonsters(_ESpawnStageType_.esstFinalBossRoom);
                 break;
             case _EDialogueEventType_.edetEndInstantiateFinalBoss:
@@ -292,7 +292,7 @@ public class DialogueEvent : MonoBehaviour, IDialogueEventObserver
 
                     yield return null;
                 }
-                mapLoader.StartLoadMap(_EMapType_.emtFinalBossRepel);
+                mapLoader.StartLoadMap(_EMapType_.eFinalBossRepel);
                 break;
         }
     }

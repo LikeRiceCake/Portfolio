@@ -29,7 +29,7 @@ public class BossDieState : MonsterDieState
         switch (me.GetMonsterType())
         {
             case _EMonsterType_.emtGumihoH:
-                mapLoader.StartLoadMap(_EMapType_.emtMiddleBossTransformation);
+                mapLoader.StartLoadMap(_EMapType_.eMiddleBossTransformation);
                 monsterSpawner.CreateMonsters(_ESpawnStageType_.esstMiddleBossRoom_A);
                 break; 
             case _EMonsterType_.emtGumihoA:

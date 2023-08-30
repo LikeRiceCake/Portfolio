@@ -18,7 +18,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         dieManager = GameObject.Find("Manager").GetComponent<DieManager>();
 
-        myFactories = new MonsterFactory[(int)_EMonsterType_.emtMax];
+        myFactories = new MonsterFactory[(int)_EMonsterType_.eMax];
         myMonsters = new GameObject[(int)_ESpawnStageType_.esstMax][];
         spawnPos = new GameObject[(int)_ESpawnStageType_.esstMax][];
 

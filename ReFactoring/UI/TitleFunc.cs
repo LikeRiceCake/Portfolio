@@ -50,7 +50,7 @@ public class TitleFunc : MonoBehaviour
 
     public void StartGame()
     {
-        mapLoader.StartLoadMap(_EMapType_.emtIntro);
+        mapLoader.StartLoadMap(_EMapType_.eIntro);
     }
 
     public void OnOffOption()

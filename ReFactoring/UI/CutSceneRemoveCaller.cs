@@ -21,9 +21,9 @@ public class CutSceneRemoveCaller : MonoBehaviour
 
         monsterSpawner = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
 
-        if (SceneManager.GetActiveScene().name == _EMapType_.emtMiddleBossTransformation.ToString())
+        if (SceneManager.GetActiveScene().name == _EMapType_.eMiddleBossTransformation.ToString())
             monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstMiddleBossRoom_A);
-        else if(SceneManager.GetActiveScene().name == _EMapType_.emtFinalBossAppear.ToString())
+        else if(SceneManager.GetActiveScene().name == _EMapType_.eFinalBossAppear.ToString())
         {
             monsterSpawner.SpawnMonsters(_ESpawnStageType_.esstFinalBossRoom);
             dialogue.OnLine(_EDialogueEventType_.edetEndInstantiateFinalBoss);

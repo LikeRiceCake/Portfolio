@@ -80,9 +80,9 @@ public class IntroFunc : MonoBehaviour
                 }
                 else if (m_currentComic == (int)_EIntroComicType_.eictThird)
                 {
-                    mapLoader.StartUnLoadMap(_EMapType_.emtIntro);
-                    mapLoader.StartUnLoadMap(_EMapType_.emtTitle);
-                    mapLoader.StartLoadMap(_EMapType_.emtInGame);
+                    mapLoader.StartUnLoadMap(_EMapType_.eIntro);
+                    mapLoader.StartUnLoadMap(_EMapType_.eTitle);
+                    mapLoader.StartLoadMap(_EMapType_.eInGame);
                     break;
                 }
             }

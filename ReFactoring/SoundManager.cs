@@ -33,13 +33,13 @@ public class SoundManager : MonoBehaviour
         bgmSource = GameObject.Find("Audios").transform.Find("BGM").GetComponent<AudioSource>();
         sfxSource = GameObject.Find("Audios").transform.Find("SFX").GetComponent<AudioSource>();
 
-        bgmClips = new AudioClip[(int)_EMapType_.emtMax];
+        bgmClips = new AudioClip[(int)_EMapType_.eMax];
 
-        bgmClips[(int)_EMapType_.emtTitle] = resourceManager.LoadAudioClip("Sounds/BGM/Title");
-        bgmClips[(int)_EMapType_.emtIntro] = resourceManager.LoadAudioClip("Sounds/BGM/Intro");
-        bgmClips[(int)_EMapType_.emtInGame] = resourceManager.LoadAudioClip("Sounds/BGM/InGame");
-        bgmClips[(int)_EMapType_.emtGumihoFight] = resourceManager.LoadAudioClip("Sounds/BGM/GumihoFight");
-        bgmClips[(int)_EMapType_.emtHeoghoFight] = resourceManager.LoadAudioClip("Sounds/BGM/HeoghoFight");
+        bgmClips[(int)_EMapType_.eTitle] = resourceManager.LoadAudioClip("Sounds/BGM/Title");
+        bgmClips[(int)_EMapType_.eIntro] = resourceManager.LoadAudioClip("Sounds/BGM/Intro");
+        bgmClips[(int)_EMapType_.eInGame] = resourceManager.LoadAudioClip("Sounds/BGM/InGame");
+        bgmClips[(int)_EMapType_.eGumihoFight] = resourceManager.LoadAudioClip("Sounds/BGM/GumihoFight");
+        bgmClips[(int)_EMapType_.eHeoghoFight] = resourceManager.LoadAudioClip("Sounds/BGM/HeoghoFight");
 
         soundSliders = new Slider[(int)_ESoundType_.estMax];
     }

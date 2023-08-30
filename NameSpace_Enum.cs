@@ -68,15 +68,15 @@ namespace PublicEnums
 
     public enum _EMapType_
     {
-        emtTitle,
-        emtIntro,
-        emtInGame,
-        emtMiddleBossTransformation,
-        emtFinalBossAppear,
-        emtFinalBossRepel,
-        emtGumihoFight,
-        emtHeoghoFight,
-        emtMax
+        eTitle,
+        eIntro,
+        eInGame,
+        eMiddleBossTransformation,
+        eFinalBossAppear,
+        eFinalBossRepel,
+        eGumihoFight,
+        eHeoghoFight,
+        eMax
     }
 
     public enum _ESoundType_
@@ -109,7 +109,7 @@ namespace PublicEnums
             emtGumihoA,
             emtGumihoIdle,
             emtHeogho,
-            emtMax
+            eMax
         }
 
         namespace DetailType

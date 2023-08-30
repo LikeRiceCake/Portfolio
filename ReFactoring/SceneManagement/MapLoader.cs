@@ -34,7 +34,7 @@ public class MapLoader : MonoBehaviour, IGameStateSubject
 
     private void Start()
     {
-        StartLoadMap(_EMapType_.emtTitle);
+        StartLoadMap(_EMapType_.eTitle);
     }
 
     public void StartLoadMap(_EMapType_ _type)
@@ -50,8 +50,8 @@ public class MapLoader : MonoBehaviour, IGameStateSubject
     {
         switch (_type)
         {
-            case _EMapType_.emtMiddleBossTransformation:
-            case _EMapType_.emtFinalBossAppear:
+            case _EMapType_.eMiddleBossTransformation:
+            case _EMapType_.eFinalBossAppear:
                 NotifyGameState(_EGameStateType_.egstIsStop, true);
                 cutSceneUI.OffUIs();
                 break;
@@ -78,7 +78,7 @@ public class MapLoader : MonoBehaviour, IGameStateSubject
 
         switch (_type)
         {
-            case _EMapType_.emtInGame:
+            case _EMapType_.eInGame:
                 initHelper.CallInit(_EInitCallType_.eictEnter_InGameScene);
                 break;
         }
