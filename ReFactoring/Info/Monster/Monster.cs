@@ -19,6 +19,8 @@ public abstract class Monster : MonoBehaviour, ICollectible, IStat
 
     protected CollectionInfo collectionInfo;
 
+    protected int m_particleDamage = 0;
+
     Rigidbody myBody;
 
     protected virtual void Awake()
@@ -34,11 +36,12 @@ public abstract class Monster : MonoBehaviour, ICollectible, IStat
     {
         InitCollectionInfo();
         myControl.ControlAction();
+
+        SetParticleDamage();
     }
 
     private void Update()
     {
-        // �и� ����
         myBody.velocity = Vector3.zero;
         myBody.angularVelocity = Vector3.zero;
     }
@@ -51,6 +54,14 @@ public abstract class Monster : MonoBehaviour, ICollectible, IStat
         collectionInfo.numbering = 0;
         collectionInfo.skillDescription = "����";
     }
+
+    protected virtual void SetParticleDamage()
+    {
+        ParticleCollider[] particles = transform.GetComponentsInChildren<MonsterParticleCollider>();
+
+        foreach(var particle in particles)
+            particle.m_damage = m_particleDamage;
+    } 
 
     public _EMonsterType_ GetMonsterType()
     {

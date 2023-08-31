@@ -18,6 +18,8 @@ public class GumihoH : Gumiho
     {
         stat = new GumihoHStat(GetComponent<BossStateManager>());
 
+        m_particleDamage = 3;
+
         base.Start();
 
         gameObject.AddComponent<GumihoPattern100>();

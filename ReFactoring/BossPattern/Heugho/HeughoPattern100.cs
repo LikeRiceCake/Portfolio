@@ -20,11 +20,6 @@ public class HeughoPattern100 : MonsterPattern
     const string SWING_BOTHHAND_VERTICAL_ANIM_NAME = "BothAttack";
     const string HowlingLRAura_ANIM_NAME = "HowlingLR";
 
-    private void Start()
-    {
-        transform.Find("howlingC").Find("shockwave_right").Find("shockwave_right2").GetComponent<ParticleSkill>().m_damage = transform.Find("howlingC").Find("shockwave_left").Find("shockwave_left2").GetComponent<ParticleSkill>().m_damage = AURA_DAMAGE;
-    }
-
     public override string SetRandomSkill()
     {
         int rand = Random.Range((int)_EHeughoSkill100_.ehsSwingRightHandHorizontal, (int)_EHeughoSkill100_.ehsMax);

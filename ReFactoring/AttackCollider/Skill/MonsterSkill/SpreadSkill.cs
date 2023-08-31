@@ -8,11 +8,6 @@ public class SpreadSkill : MonoBehaviour
 
     void Update()
     {
-        SkillSpread();
-    }
-
-    void SkillSpread()
-    {
         transform.localScale += new Vector3(Time.deltaTime * m_spreadSpeed, Time.deltaTime * m_spreadSpeed, Time.deltaTime * m_spreadSpeed);
     }
 }

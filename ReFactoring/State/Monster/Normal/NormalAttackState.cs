@@ -14,7 +14,10 @@ public class NormalAttackState : MonsterAttackState
     const float ATTACK_COLLIDER_INS_DIS = 1.5f;
     const float ATTACK_COLLIDER_INS_HEIGHT = 0.5f;
     const float ATTACK_COLLIDER_SPEED = 5f;
-    float attackColliderm_destroyTime;
+
+    const float CLOSE_ATTACK_COLLIDER_DESTROY_TIME = 0.1f;
+    const float LONG_ATTACK_COLLIDER_DESTROY_TIME = 5f;
+    float m_attackColliderDestroyTime;
 
     public override void DoAction(_EStateType_ _type)
     {
@@ -27,11 +30,11 @@ public class NormalAttackState : MonsterAttackState
             case _EMonsterType_.emtWolf:
             case _EMonsterType_.emtBoar:
                 attackCollider = resourceManager.LoadMonsterPrefab("Prefabs/SkillObject/CloseAttack");
-                attackColliderm_destroyTime = 0.1f;
+                m_attackColliderDestroyTime = CLOSE_ATTACK_COLLIDER_DESTROY_TIME;
                 break;
             case _EMonsterType_.emtBird:
                 attackCollider = resourceManager.LoadMonsterPrefab("Prefabs/SkillObject/LongAttack");
-                attackColliderm_destroyTime = 5f;
+                m_attackColliderDestroyTime = LONG_ATTACK_COLLIDER_DESTROY_TIME;
                 break;
         }
 
@@ -52,30 +55,13 @@ public class NormalAttackState : MonsterAttackState
 
         yield return new WaitUntil(() => myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f);
 
-        GameObject obj = Instantiate(attackCollider, transform.position + (transform.forward * ATTACK_COLLIDER_INS_DIS) + offSet, transform.rotation);
+        GameObject obj = Instantiate(attackCollider, transform.position + (transform.forward * ATTACK_COLLIDER_INS_DIS) + offSet, Quaternion.Euler(GameObject.Find("Player").transform.position - transform.position));
 
         obj.GetComponent<MonsterAttackCollider>().m_damage = myStat.GetDamage(_EIntStatType_.eistDamage);
-        obj.GetComponent<MonsterAttackCollider>().m_destroyTime = attackColliderm_destroyTime;
-        if (obj.GetComponent<ForwardMoveObject>() != null)
-        {
-            Transform target = null;
-
-            Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
-
-            if (cols != null)
-            {
-                foreach (var col in cols)
-                {
-                    if (col.CompareTag("AttackedPos"))
-                        target = col.transform;
-                }
-            }
-
-            obj.GetComponent<ForwardMoveObject>().target = target;
+        obj.GetComponent<SelfDestroyer>().m_destroyTime = m_attackColliderDestroyTime;
+        if(obj.GetComponent<ForwardMoveObject>() != null)
             obj.GetComponent<ForwardMoveObject>().m_speed = ATTACK_COLLIDER_SPEED;
-        }
     }
-
     protected override IEnumerator AfterAttack()
     {
         while (true)

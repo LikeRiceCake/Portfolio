@@ -17,8 +17,9 @@ public class GumihoSkill : PlayerSkill
         if (m_currentCoolTime <= 0)
         {
             base.ActivateSkillFunction();
-            Instantiate(spawnObject, spawnPos.transform.position, Camera.main.transform.rotation).GetComponent<Will_O_The_Wisp_Player>().m_destroyTime = COOLTIME;
-            // 데미지 설정 필요
+            GameObject obj = Instantiate(spawnObject, spawnPos.transform.position, Camera.main.transform.rotation);
+            obj.GetComponent<SelfDestroyer>().m_destroyTime = COOLTIME;
+            obj.GetComponent<PlayerSkillCollider>().m_damage = DAMAGE;
             m_currentCoolTime = COOLTIME;
         }
     }

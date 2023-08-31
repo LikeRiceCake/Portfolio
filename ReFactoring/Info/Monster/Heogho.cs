@@ -17,6 +17,8 @@ public class Heogho : Boss
     {
         stat = new HeoghoStat(GetComponent<BossStateManager>());
 
+        m_particleDamage = 3;
+
         base.Start();
 
         ((HeoghoStat)stat).mp = gameObject.AddComponent<HeughoPattern100>();

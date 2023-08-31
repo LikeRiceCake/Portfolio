@@ -76,7 +76,7 @@ public class GumihoPattern100 : MonsterPattern
         {
             WILL_O_THE_WISPS[i] = Instantiate(skillPrefab, transform.Find("ShotPositions").GetChild(i).transform.position, Quaternion.identity);
             WILL_O_THE_WISPS[i].GetComponent<MonsterAttackCollider>().m_damage = GUMIHOSKILL_100_DAMAGES[(int)_EGumihoSkill100_.egsShot_WILL_O_THE_WISP_Three];
-            WILL_O_THE_WISPS[i].GetComponent<MonsterAttackCollider>().m_destroyTime = GUMIHOSKILL_100_DESTROY_TIMES[(int)_EGumihoSkill100_.egsShot_WILL_O_THE_WISP_Three];
+            WILL_O_THE_WISPS[i].GetComponent<SelfDestroyer>().m_destroyTime = GUMIHOSKILL_100_DESTROY_TIMES[(int)_EGumihoSkill100_.egsShot_WILL_O_THE_WISP_Three];
             yield return new WaitForSeconds(WILL_O_THE_WISP_INS_DELAY);
         }
 
@@ -84,8 +84,6 @@ public class GumihoPattern100 : MonsterPattern
 
         for (int i = 0; i < WILL_O_THE_WISP_INS_NUM; i++)
         {
-            Transform target = null;
-
             Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
             if (cols != null)
@@ -93,11 +91,10 @@ public class GumihoPattern100 : MonsterPattern
                 foreach (var col in cols)
                 {
                     if (col.CompareTag("AttackedPos"))
-                        target = col.transform;
+                        WILL_O_THE_WISPS[i].transform.LookAt(col.transform.position - transform.position);
                 }
             }
 
-            WILL_O_THE_WISPS[i].GetComponent<ForwardMoveObject>().target = target;
             WILL_O_THE_WISPS[i].GetComponent<ForwardMoveObject>().m_speed = WILL_O_THE_WISP_SPEED;
         }
     }
@@ -195,9 +192,10 @@ public class GumihoPattern100 : MonsterPattern
         }
 
         GameObject obj = Instantiate(skillPrefab, target.position, Quaternion.identity);
-        obj.GetComponent<InstantiateObjectSkill>().damage = GUMIHOSKILL_100_DAMAGES[(int)_EGumihoSkill100_.egsBlowUp_WILL_O_THE_WISP_PlayerPlace];
+        obj.GetComponent<InstantiateObjectSkill>().m_damage = GUMIHOSKILL_100_DAMAGES[(int)_EGumihoSkill100_.egsBlowUp_WILL_O_THE_WISP_PlayerPlace];
         obj.GetComponent<InstantiateObjectSkill>().m_destroyTime = GUMIHOSKILL_100_DESTROY_TIMES[(int)_EGumihoSkill100_.egsBlowUp_WILL_O_THE_WISP_PlayerPlace];
-        obj.GetComponent<InstantiateObjectSkill>().insTime = BLOWUP_WILL_O_THE_WISP_INS_TIME;
+        obj.GetComponent<InstantiateObjectSkill>().m_insTime = BLOWUP_WILL_O_THE_WISP_INS_TIME;
+        obj.GetComponent<SelfDestroyer>().m_destroyTime = BLOWUP_WILL_O_THE_WISP_INS_TIME;
     }
 
     public override _EMonsterPattern_ GetNowPattern()

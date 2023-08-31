@@ -76,7 +76,7 @@ public class GumihoPattern70 : MonsterPattern
         {
             WILL_O_THE_WISPS[i] = Instantiate(skillPrefab, transform.Find("ShotPositions").GetChild(i).transform.position, Quaternion.identity);
             WILL_O_THE_WISPS[i].GetComponent<MonsterAttackCollider>().m_damage = GUMIHOSKILL_70_DAMAGES[(int)_EGumihoSkill70_.egsShot_WILL_O_THE_WISP_Nine];
-            WILL_O_THE_WISPS[i].GetComponent<MonsterAttackCollider>().m_destroyTime = GUMIHOSKILL_70_DESTROY_TIMES[(int)_EGumihoSkill70_.egsShot_WILL_O_THE_WISP_Nine];
+            WILL_O_THE_WISPS[i].GetComponent<SelfDestroyer>().m_destroyTime = GUMIHOSKILL_70_DESTROY_TIMES[(int)_EGumihoSkill70_.egsShot_WILL_O_THE_WISP_Nine];
             yield return new WaitForSeconds(WILL_O_THE_WISP_INS_DELAY);
         }
 
@@ -84,8 +84,6 @@ public class GumihoPattern70 : MonsterPattern
 
         for (int i = 0; i < WILL_O_THE_WISP_INS_NUM; i++)
         {
-            Transform target = null;
-
             Collider[] cols = Physics.OverlapSphere(transform.position, myStat.GetFloatStat(_EFloatStatType_.efstSight));
 
             if (cols != null)
@@ -93,11 +91,10 @@ public class GumihoPattern70 : MonsterPattern
                 foreach (var col in cols)
                 {
                     if (col.CompareTag("AttackedPos"))
-                        target = col.transform;
+                        WILL_O_THE_WISPS[i].transform.LookAt(col.transform.position - transform.position);
                 }
             }
 
-            WILL_O_THE_WISPS[i].GetComponent<ForwardMoveObject>().target = target;
             WILL_O_THE_WISPS[i].GetComponent<ForwardMoveObject>().m_speed = WILL_O_THE_WISP_SPEED;
         }
     }
@@ -134,7 +131,7 @@ public class GumihoPattern70 : MonsterPattern
 
         GameObject obj = Instantiate(skillPrefab, transform.Find("foxShield").position, Quaternion.identity);
         obj.GetComponent<MonsterAttackCollider>().m_damage = GUMIHOSKILL_70_DAMAGES[(int)_EGumihoSkill70_.egsSpreadSphere];
-        obj.GetComponent<MonsterAttackCollider>().m_destroyTime = GUMIHOSKILL_70_DESTROY_TIMES[(int)_EGumihoSkill70_.egsSpreadSphere];
+        obj.GetComponent<SelfDestroyer>().m_destroyTime = GUMIHOSKILL_70_DESTROY_TIMES[(int)_EGumihoSkill70_.egsSpreadSphere];
         obj.GetComponent<SpreadSkill>().m_spreadSpeed = SPHERE_SPEED;
     }
 

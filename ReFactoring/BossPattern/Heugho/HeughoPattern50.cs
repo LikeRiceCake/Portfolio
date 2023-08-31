@@ -76,7 +76,7 @@ public class HeughoPattern50 : HeughoPattern100
             Vector3 instantiatePos = new Vector3(Random.Range(randXMin, randXMax), map.position.y, Random.Range(randZMin, randZMax));
             GameObject obj = Instantiate(skillPrefab, instantiatePos, Quaternion.identity);
             obj.GetComponent<MonsterAttackCollider>().m_damage = LIGHTNING_DAMAGE;
-            obj.GetComponent<MonsterAttackCollider>().m_destroyTime = LIGHTNING_DESTROY_TIME;
+            obj.GetComponent<SelfDestroyer>().m_destroyTime = LIGHTNING_DESTROY_TIME;
             yield return new WaitForSeconds(LIGHTNING_INS_TIME);
         }
     }

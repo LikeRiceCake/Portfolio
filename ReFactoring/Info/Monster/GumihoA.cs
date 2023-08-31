@@ -17,6 +17,8 @@ public class GumihoA : Gumiho
     {
         stat = new GumihoAStat(GetComponent<BossStateManager>());
 
+        m_particleDamage = 3;
+
         base.Start();
 
         gameObject.AddComponent<GumihoPattern70>();

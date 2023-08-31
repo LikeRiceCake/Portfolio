@@ -7,9 +7,7 @@ public class PlayerAttackCollider : AttackCollider
 {
     protected override void OnTriggerEnter(Collider _other)
     {
-        if (_other.transform.CompareTag("Monster"))
-        {
-            _other.transform.GetComponent<IStat>().GetStat().UnderAttack(m_damage);
-        }
+        if (_other.CompareTag("Monster"))
+            _other.GetComponent<IStat>().GetStat().UnderAttack(m_damage);
     }
 }
