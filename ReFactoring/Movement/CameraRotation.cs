@@ -31,7 +31,7 @@ public class CameraRotation : MonoBehaviour, IInputMouseRotateObserver
 
     void MoveCamera()
     {
-        transform.position = target.position + new Vector3(Mathf.Sin(rot.x) * offSet.z, offSet.y, Mathf.Cos(rot.x) * offSet.z);
+        transform.position = target.position + new Vector3(Mathf.Cos(-rot.x) * offSet.z, offSet.y, Mathf.Sin(-rot.x) * offSet.z);
         transform.LookAt(target);
     }
 
